@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Sarah Jenkins",
+    "company": "TechFlow Inc.",
+    "text": "Z.A Graphics delivered our business cards exactly as promised. The quality is fantastic and the turnaround time was surprisingly fast.",
+    "rating": 5
+  },
+  {
+    "id": "2",
+    "name": "David Chen",
+    "company": "Local Brews Cafe",
+    "text": "We ordered custom coffee mugs and vinyl banners for our grand opening. Everything looked stunning and professional. Highly recommended!",
+    "rating": 5
+  },
+  {
+    "id": "3",
+    "name": "Amina Rasul",
+    "company": "Rasul & Associates",
+    "text": "Their LED shop boards are a game changer. Our storefront looks so much more inviting at night now.",
+    "rating": 4
+  }
+]
