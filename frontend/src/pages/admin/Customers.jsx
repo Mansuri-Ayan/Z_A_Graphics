@@ -1,6 +1,10 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Pagination } from '../../components/ui/Pagination';
+import { ChevronRight } from 'lucide-react';
 
 const Customers = () => {
+  const navigate = useNavigate();
   const mockCustomers = [
     { id: 1, name: 'John Smith', email: 'john@acme.com', phone: '+1 234-567-8900', orders: 12, spent: 4500.00, joined: 'Jan 2023' },
     { id: 2, name: 'Sarah Connor', email: 'sarah@techstart.io', phone: '+1 987-654-3210', orders: 3, spent: 850.50, joined: 'Mar 2023' },
@@ -50,7 +54,11 @@ const Customers = () => {
             </thead>
             <tbody className="divide-y divide-gray-50">
               {mockCustomers.map((customer) => (
-                <tr key={customer.id} className="hover:bg-gray-50/80 transition-colors group">
+                <tr 
+                  key={customer.id} 
+                  onClick={() => navigate(`/admin/customers/${customer.id}`)}
+                  className="hover:bg-gray-50/80 transition-colors group cursor-pointer"
+                >
                   <td className="px-8 py-5 whitespace-nowrap">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-black text-sm shadow-sm">
@@ -66,14 +74,22 @@ const Customers = () => {
                   <td className="px-8 py-5 whitespace-nowrap text-sm font-bold text-gray-900">{customer.orders}</td>
                   <td className="px-8 py-5 whitespace-nowrap text-sm font-black text-gray-900">${customer.spent.toFixed(2)}</td>
                   <td className="px-8 py-5 whitespace-nowrap text-sm font-medium text-gray-500">{customer.joined}</td>
-                  <td className="px-8 py-5 whitespace-nowrap text-sm text-right font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="text-blue-600 hover:text-blue-800 transition-colors">View Profile</button>
+                  <td className="px-8 py-5 whitespace-nowrap text-sm text-right font-bold transition-opacity">
+                    <Link 
+                      to={`/admin/customers/${customer.id}`} 
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 rounded-lg transition-colors"
+                      title="View Profile"
+                    >
+                      View Profile <ChevronRight className="w-3.5 h-3.5" />
+                    </Link>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        <Pagination />
       </div>
     </div>
   );

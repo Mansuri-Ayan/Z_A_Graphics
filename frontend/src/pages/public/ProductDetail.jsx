@@ -6,12 +6,16 @@ import DesignUploader from '../../components/feature/DesignUploader';
 import ProductCard from '../../components/feature/ProductCard';
 import { useCart } from '../../context/CartContext';
 import { useToast } from "../../components/ui/Toast/useToast";
+import { ThumbsUp, ThumbsDown } from 'lucide-react';
 
 const ProductDetail = () => {
   const { slug } = useParams(); // Using slug as per route, but finding by id for mock data
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { success } = useToast();
+  const [isAsking, setIsAsking] = useState(false);
+  const [questionText, setQuestionText] = useState('');
+  
   // We're matching ID for now. If slug was really a slug, we'd find by slug.
   const product = mockProducts.find(p => p.id === slug) || mockProducts.find(p => p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') === slug) || mockProducts[0];
   
@@ -20,6 +24,14 @@ const ProductDetail = () => {
   const handleAddToCart = () => {
     addToCart(product, quantity);
     success('Added to cart successfully!');
+  };
+
+  const handleAskQuestion = (e) => {
+    e.preventDefault();
+    if (!questionText.trim()) return;
+    success('Question submitted! You can view the reply in your account.');
+    setIsAsking(false);
+    setQuestionText('');
   };
 
   const handleQuantityChange = (e) => {
@@ -132,32 +144,86 @@ const ProductDetail = () => {
         <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-10 text-center">Frequently Asked Questions</h2>
         
         <div className="grid md:grid-cols-2 gap-6 mb-12">
-          <div className="p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100">
-            <p className="font-bold text-gray-900 mb-3 flex items-start">
-              <span className="text-blue-600 mr-3 text-xl">Q.</span>
-              Can I print different names on the cards in one bulk order?
-            </p>
-            <p className="text-gray-600 text-base leading-relaxed pl-8">
-              Yes, you can upload a multi-page PDF or a zip file containing the different designs.
-            </p>
+          <div className="p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 flex flex-col justify-between">
+            <div>
+              <p className="font-bold text-gray-900 mb-3 flex items-start">
+                <span className="text-blue-600 mr-3 text-xl">Q.</span>
+                Can I print different names on the cards in one bulk order?
+              </p>
+              <p className="text-gray-600 text-base leading-relaxed pl-8">
+                Yes, you can upload a multi-page PDF or a zip file containing the different designs.
+              </p>
+            </div>
+            <div className="flex items-center gap-4 pl-8 mt-4 pt-4 border-t border-gray-100">
+              <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Was this helpful?</span>
+              <div className="flex gap-2">
+                <button className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"><ThumbsUp className="w-4 h-4" /></button>
+                <button className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"><ThumbsDown className="w-4 h-4" /></button>
+              </div>
+            </div>
           </div>
-          <div className="p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100">
-            <p className="font-bold text-gray-900 mb-3 flex items-start">
-              <span className="text-blue-600 mr-3 text-xl">Q.</span>
-              What is the paper thickness?
-            </p>
-            <p className="text-gray-600 text-base leading-relaxed pl-8">
-              Our standard business cards use 300 GSM premium cardstock.
-            </p>
+          <div className="p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 flex flex-col justify-between">
+            <div>
+              <p className="font-bold text-gray-900 mb-3 flex items-start">
+                <span className="text-blue-600 mr-3 text-xl">Q.</span>
+                What is the paper thickness?
+              </p>
+              <p className="text-gray-600 text-base leading-relaxed pl-8">
+                Our standard business cards use 300 GSM premium cardstock.
+              </p>
+            </div>
+            <div className="flex items-center gap-4 pl-8 mt-4 pt-4 border-t border-gray-100">
+              <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Was this helpful?</span>
+              <div className="flex gap-2">
+                <button className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"><ThumbsUp className="w-4 h-4" /></button>
+                <button className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"><ThumbsDown className="w-4 h-4" /></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="bg-blue-50 p-8 rounded-2xl text-center max-w-2xl mx-auto border border-blue-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-3">Still have questions?</h3>
-          <p className="text-gray-600 mb-6">Our printing experts are ready to help you with your order.</p>
-          <Link to="/contact" className="inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-xl shadow-sm hover:shadow-md transition-all">
-            Contact Support
-          </Link>
+        <div className="bg-blue-50 p-8 rounded-2xl max-w-2xl mx-auto border border-blue-100">
+          {!isAsking ? (
+            <div className="text-center">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Still have questions?</h3>
+              <p className="text-gray-600 mb-6">Ask a question if you have any.</p>
+              <button 
+                onClick={() => setIsAsking(true)}
+                className="inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-xl shadow-sm hover:shadow-md transition-all"
+              >
+                Ask a question
+              </button>
+            </div>
+          ) : (
+            <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+              <h3 className="text-xl font-bold text-gray-900 mb-4 text-left">Ask your question</h3>
+              <form onSubmit={handleAskQuestion} className="flex flex-col items-start gap-4 w-full">
+                <textarea 
+                  className="w-full rounded-xl border border-gray-200 bg-white p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 shadow-sm text-sm" 
+                  rows="4" 
+                  placeholder="Type your question here about this product..."
+                  value={questionText}
+                  onChange={(e) => setQuestionText(e.target.value)}
+                  autoFocus
+                ></textarea>
+                <div className="flex gap-3 w-full justify-end">
+                  <button 
+                    type="button" 
+                    onClick={() => setIsAsking(false)} 
+                    className="px-5 py-2.5 rounded-xl text-gray-500 hover:bg-white font-medium transition-colors border border-transparent hover:border-gray-200 text-sm"
+                  >
+                    Cancel
+                  </button>
+                  <button 
+                    type="submit" 
+                    className="px-6 py-2.5 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 shadow-sm transition-colors text-sm"
+                  >
+                    Submit Question
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
         </div>
       </div>
 

@@ -90,10 +90,10 @@ const Navbar = () => {
               )}
             </Link>
 
-            <Link to="/contact" className="hidden lg:block ml-2">
+            <Link to="/admin" className="hidden lg:block ml-2">
               <span className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-brand-black px-6 py-2.5 font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,0,0,0.15)]">
                 <span className="absolute inset-0 bg-gradient-to-r from-gray-800 via-brand-black to-gray-800 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-                <span className="relative z-10 text-sm font-bold">Get a quote</span>
+                <span className="relative z-10 text-sm font-bold">Dashboard</span>
               </span>
             </Link>
 

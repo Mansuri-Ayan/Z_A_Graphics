@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Pagination } from '../../components/ui/Pagination';
+import { Modal } from '../../components/ui/Modal';
+import { Button } from '../../components/ui/Button';
+import { Check, MessageSquare, Edit3 } from 'lucide-react';
 
 const Inquiries = () => {
-  const mockInquiries = [
-    { id: 1, name: 'Alice Walker', email: 'alice@example.com', subject: 'Custom Quote for 10k Flyers', date: '2 hours ago', status: 'New' },
-    { id: 2, name: 'Bob Builder', email: 'bob@construction.com', subject: 'Banner material inquiry', date: '5 hours ago', status: 'Read' },
-    { id: 3, name: 'Charlie Davis', email: 'charlie@davis.net', subject: 'Artwork requirements', date: '1 day ago', status: 'Replied' },
-    { id: 4, name: 'Diana Prince', email: 'diana@amazon.org', subject: 'Bulk discount pricing', date: '2 days ago', status: 'Replied' },
-  ];
+  const [inquiries, setInquiries] = useState([
+    { id: 1, name: 'Alice Walker', email: 'alice@example.com', subject: 'Custom Quote for 10k Flyers', date: '2 hours ago', status: 'New', message: 'I would like to get a quote for printing 10,000 double-sided flyers on glossy paper.', reply: '' },
+    { id: 2, name: 'Bob Builder', email: 'bob@construction.com', subject: 'Banner material inquiry', date: '5 hours ago', status: 'Read', message: 'What kind of vinyl do you use for your outdoor banners?', reply: '' },
+    { id: 3, name: 'Charlie Davis', email: 'charlie@davis.net', subject: 'Artwork requirements', date: '1 day ago', status: 'Replied', message: 'What is the required bleed for business cards?', reply: 'We require a 0.125" bleed on all sides.' },
+    { id: 4, name: 'Diana Prince', email: 'diana@amazon.org', subject: 'Bulk discount pricing', date: '2 days ago', status: 'Replied', message: 'Do you offer bulk discounts on orders over 1000 items?', reply: 'Yes, we offer tier-based pricing for bulk orders.' },
+  ]);
+
+  const [isReplyOpen, setIsReplyOpen] = useState(false);
+  const [selectedInquiry, setSelectedInquiry] = useState(null);
+  const [replyText, setReplyText] = useState('');
 
   const getStatusStyle = (status) => {
     switch(status) {
@@ -15,6 +23,27 @@ const Inquiries = () => {
       case 'Replied': return 'bg-green-100 text-green-800 border-green-200';
       default: return 'bg-gray-100 text-gray-800 border-gray-200';
     }
+  };
+
+  const handleMarkRead = (id) => {
+    setInquiries(prev => prev.map(inq => 
+      inq.id === id ? { ...inq, status: 'Read' } : inq
+    ));
+  };
+
+  const handleOpenReply = (inq) => {
+    setSelectedInquiry(inq);
+    setReplyText(inq.reply || '');
+    setIsReplyOpen(true);
+  };
+
+  const handleSubmitReply = () => {
+    if (replyText.trim()) {
+      setInquiries(prev => prev.map(inq => 
+        inq.id === selectedInquiry.id ? { ...inq, status: 'Replied', reply: replyText } : inq
+      ));
+    }
+    setIsReplyOpen(false);
   };
 
   return (
@@ -52,8 +81,12 @@ const Inquiries = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
-              {mockInquiries.map((inquiry) => (
-                <tr key={inquiry.id} className="hover:bg-gray-50/80 transition-colors group cursor-pointer">
+              {inquiries.map((inquiry) => (
+                <tr 
+                  key={inquiry.id} 
+                  onClick={() => handleOpenReply(inquiry)}
+                  className="hover:bg-gray-50/80 transition-colors group cursor-pointer"
+                >
                   <td className="px-8 py-5 whitespace-nowrap">
                     <div className="text-sm font-black text-gray-900">{inquiry.name}</div>
                     <div className="text-xs font-bold text-gray-500 mt-0.5">{inquiry.email}</div>
@@ -69,18 +102,67 @@ const Inquiries = () => {
                       {inquiry.status}
                     </span>
                   </td>
-                  <td className="px-8 py-5 whitespace-nowrap text-sm text-right font-bold space-x-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <td className="px-8 py-5 whitespace-nowrap text-sm text-right font-bold space-x-3 transition-opacity">
                     {inquiry.status === 'New' && (
-                      <button className="text-gray-600 hover:text-gray-900 transition-colors">Mark Read</button>
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); handleMarkRead(inquiry.id); }}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 hover:text-gray-900 rounded-lg transition-colors"
+                        title="Mark as Read"
+                      >
+                        <Check className="w-3.5 h-3.5" /> Mark Read
+                      </button>
                     )}
-                    <button className="text-blue-600 hover:text-blue-800 transition-colors">Reply</button>
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); handleOpenReply(inquiry); }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 rounded-lg transition-colors"
+                      title={inquiry.status === 'Replied' ? 'Edit Reply' : 'Reply'}
+                    >
+                      {inquiry.status === 'Replied' ? <><Edit3 className="w-3.5 h-3.5" /> Edit Reply</> : <><MessageSquare className="w-3.5 h-3.5" /> Reply</>}
+                    </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        <Pagination />
       </div>
+
+      <Modal
+        isOpen={isReplyOpen}
+        onClose={() => setIsReplyOpen(false)}
+        title="Reply to Inquiry"
+        size="md"
+        footer={
+          <>
+            <Button variant="outline" onClick={() => setIsReplyOpen(false)}>Cancel</Button>
+            <Button variant="primary" onClick={handleSubmitReply}>Send Reply</Button>
+          </>
+        }
+      >
+        {selectedInquiry && (
+          <div className="space-y-4 py-2">
+            <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+              <p className="text-xs font-bold text-gray-500 uppercase mb-1">Customer Message</p>
+              <p className="text-sm font-bold text-gray-900 mb-1">{selectedInquiry.subject}</p>
+              <p className="text-sm font-medium text-gray-700 italic">"{selectedInquiry.message}"</p>
+              <p className="text-xs font-bold text-gray-400 mt-2">— {selectedInquiry.name} ({selectedInquiry.email})</p>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2">Your Reply</label>
+              <textarea 
+                rows="4"
+                value={replyText}
+                onChange={(e) => setReplyText(e.target.value)}
+                placeholder="Type your reply here..."
+                className="w-full border border-gray-200 rounded-xl p-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-white custom-scrollbar"
+                autoFocus
+              ></textarea>
+            </div>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };

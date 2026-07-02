@@ -3,6 +3,23 @@ import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 
 const AdminLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [notifications, setNotifications] = useState([
+    { id: 1, text: 'New order #ZAG-128945 received.', read: false, time: '5m ago' },
+    { id: 2, text: 'Customer QA: "What is the timeline?"', read: false, time: '1h ago' },
+    { id: 3, text: 'Order #ZAG-128942 delivered.', read: true, time: '1d ago' },
+  ]);
+
+  const unreadCount = notifications.filter(n => !n.read).length;
+
+  const markAsRead = (id) => {
+    setNotifications(notifications.map(n => n.id === id ? { ...n, read: true } : n));
+  };
+
+  const markAllAsRead = () => {
+    setNotifications(notifications.map(n => ({ ...n, read: true })));
+  };
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -89,12 +106,55 @@ const AdminLayout = () => {
           <div className="flex-1"></div>
 
           <div className="flex items-center space-x-6">
-            <button className="relative text-gray-400 hover:text-gray-900 bg-gray-50 p-2.5 rounded-full transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-              </svg>
-              <span className="absolute top-2 right-2 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white"></span>
-            </button>
+            <div className="relative">
+              <button 
+                onClick={() => setShowNotifications(!showNotifications)}
+                className="relative text-gray-400 hover:text-gray-900 bg-gray-50 p-2.5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                {unreadCount > 0 && (
+                  <span className="absolute top-2 right-2 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white"></span>
+                )}
+              </button>
+
+              {showNotifications && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setShowNotifications(false)}></div>
+                  <div className="absolute right-0 mt-3 w-80 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
+                    <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                      <h4 className="text-sm font-black text-gray-900">Notifications</h4>
+                      {unreadCount > 0 && (
+                        <button onClick={markAllAsRead} className="text-xs font-bold text-blue-600 hover:text-blue-700 hover:underline focus:outline-none">
+                          Mark all as read
+                        </button>
+                      )}
+                    </div>
+                    <div className="max-h-80 overflow-y-auto custom-scrollbar">
+                      {notifications.length > 0 ? notifications.map(notif => (
+                        <div key={notif.id} className={`p-4 border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors flex gap-3 ${!notif.read ? 'bg-blue-50/30' : ''}`}>
+                          <div className={`mt-1.5 h-2 w-2 rounded-full flex-shrink-0 ${!notif.read ? 'bg-blue-600' : 'bg-transparent'}`}></div>
+                          <div className="flex-1">
+                            <p className={`text-sm ${!notif.read ? 'font-bold text-gray-900' : 'font-medium text-gray-600'}`}>{notif.text}</p>
+                            <p className="text-xs font-bold text-gray-400 mt-1">{notif.time}</p>
+                          </div>
+                          {!notif.read && (
+                            <button onClick={(e) => { e.stopPropagation(); markAsRead(notif.id); }} className="text-gray-400 hover:text-blue-600 focus:outline-none" title="Mark as read">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                              </svg>
+                            </button>
+                          )}
+                        </div>
+                      )) : (
+                        <div className="p-6 text-center text-sm font-bold text-gray-500">No notifications</div>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
             <div className="flex items-center space-x-4 border-l border-gray-200 pl-6 cursor-pointer group">
               <div className="text-right hidden sm:block">
                 <p className="text-sm font-black text-gray-900 leading-tight">Admin User</p>

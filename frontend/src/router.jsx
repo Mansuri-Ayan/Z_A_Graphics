@@ -23,14 +23,19 @@ import NotFound from './pages/public/NotFound';
 import Account from './pages/customer/Account';
 import CustomerOrders from './pages/customer/Orders';
 import OrderDetail from './pages/customer/OrderDetail';
+import CustomerInquiries from './pages/customer/Inquiries';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/Dashboard';
 import AdminProducts from './pages/admin/Products';
+import AdminProductForm from './pages/admin/ProductForm';
+import AdminProductView from './pages/admin/ProductView';
 import AdminOrders from './pages/admin/Orders';
+import AdminOrderDetail from './pages/admin/OrderDetail';
 import AdminSettings from './pages/admin/Settings';
 import AdminQA from './pages/admin/QA';
 import AdminCustomers from './pages/admin/Customers';
+import AdminCustomerDetail from './pages/admin/CustomerDetail';
 import AdminInquiries from './pages/admin/Inquiries';
 import AdminPromo from './pages/admin/Promo';
 
@@ -57,6 +62,16 @@ export const router = createBrowserRouter([
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
       { path: '/forgot-password', element: <ForgotPassword /> },
+      {
+        path: '/account',
+        element: <CustomerLayout />,
+        children: [
+          { index: true, element: <Account /> },
+          { path: 'orders', element: <CustomerOrders /> },
+          { path: 'orders/:orderId', element: <OrderDetail /> },
+          { path: 'questions', element: <CustomerInquiries /> },
+        ],
+      },
       { path: '*', element: <NotFound /> }, // Catch-all 404
     ],
   },
@@ -71,17 +86,6 @@ export const router = createBrowserRouter([
     element: <OrderConfirmation />,
   },
   {
-    // Customer Dashboard Layout
-    // TODO: Add route guard wrapper here (e.g. <RequireAuth allowedRoles={['customer']}>)
-    path: '/account',
-    element: <CustomerLayout />,
-    children: [
-      { index: true, element: <Account /> },
-      { path: 'orders', element: <CustomerOrders /> },
-      { path: 'orders/:orderId', element: <OrderDetail /> }, // Dynamic order ID
-    ],
-  },
-  {
     // Admin Panel Layout
     // TODO: Add route guard wrapper here (e.g. <RequireAuth allowedRoles={['admin']}>)
     path: '/admin',
@@ -90,9 +94,14 @@ export const router = createBrowserRouter([
       { index: true, element: <Navigate to="/admin/dashboard" replace /> },
       { path: 'dashboard', element: <AdminDashboard /> },
       { path: 'products', element: <AdminProducts /> },
+      { path: 'products/new', element: <AdminProductForm /> },
+      { path: 'products/:productId', element: <AdminProductView /> },
+      { path: 'products/:productId/edit', element: <AdminProductForm /> },
       { path: 'orders', element: <AdminOrders /> },
+      { path: 'orders/:orderId', element: <AdminOrderDetail /> },
       { path: 'qa', element: <AdminQA /> },
       { path: 'customers', element: <AdminCustomers /> },
+      { path: 'customers/:customerId', element: <AdminCustomerDetail /> },
       { path: 'inquiries', element: <AdminInquiries /> },
       { path: 'promo', element: <AdminPromo /> },
       { path: 'settings', element: <AdminSettings /> },
