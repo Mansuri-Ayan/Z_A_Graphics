@@ -3,6 +3,9 @@ import React from 'react';
 const TermsOfService = () => {
   return (
     <div className="max-w-4xl mx-auto pt-32 pb-16 px-6 lg:px-8">
+      <title>Terms of Service | Z.A Graphics</title>
+      <meta name="description" content="Read the Terms of Service for Z.A Graphics. Information about your rights, obligations, and the rules when using our bulk printing platform." />
+      
       <h1 className="text-4xl font-black text-gray-900 mb-8">Terms of Service</h1>
       
       <div className="space-y-8 text-gray-700 leading-relaxed">

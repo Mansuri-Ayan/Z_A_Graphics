@@ -3,6 +3,9 @@ import React from 'react';
 const ShippingPolicy = () => {
   return (
     <div className="max-w-4xl mx-auto pt-32 pb-16 px-6 lg:px-8">
+      <title>Shipping & Delivery Policy | Z.A Graphics</title>
+      <meta name="description" content="View the Shipping and Delivery Policy for Z.A Graphics. Find information regarding shipping carriers, delivery times, and rates across India." />
+      
       <h1 className="text-4xl font-black text-gray-900 mb-8">Shipping & Delivery Policy</h1>
       
       <div className="space-y-8 text-gray-700 leading-relaxed">

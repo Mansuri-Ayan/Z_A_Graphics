@@ -11,6 +11,17 @@ const OrderDetail = () => {
 
   return (
     <div className="space-y-8">
+      
+      {/* Back Button */}
+      <div className="mb-2">
+        <Link to="/account/orders" className="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+          </svg>
+          Back to Orders
+        </Link>
+      </div>
+
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-2">
         <div>
           <h2 className="text-3xl font-black text-gray-900">Order #{orderId}</h2>
@@ -22,37 +33,53 @@ const OrderDetail = () => {
       </div>
 
       {/* Timeline */}
-      <div className="bg-white rounded-3xl border border-gray-100 p-8 sm:p-12 shadow-sm mb-8 overflow-hidden relative">
-        <div className="relative flex flex-col md:flex-row justify-between items-center z-10 mb-2">
-          <div className="absolute top-1/2 left-0 w-full h-1.5 bg-gray-100 -z-10 hidden md:block rounded-full"></div>
-          {/* Active progress bar */}
-          <div 
-            className="absolute top-1/2 left-0 h-1.5 bg-blue-600 -z-10 hidden md:block rounded-full transition-all duration-1000 ease-out" 
-            style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
-          ></div>
-          
-          {steps.map((step, index) => (
-            <div key={step} className="flex flex-col items-center mb-6 md:mb-0 relative group">
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center font-black border-4 shadow-sm mb-3 transition-all duration-500 ${
-                index < currentStep 
-                  ? 'bg-blue-600 border-white text-white' 
-                  : index === currentStep 
-                    ? 'bg-white border-blue-600 text-blue-600 ring-4 ring-blue-50' 
-                    : 'bg-white border-gray-100 text-gray-400'
-              }`}>
-                {index < currentStep ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                ) : (
-                  index + 1
-                )}
-              </div>
-              <span className={`text-sm ${index <= currentStep ? 'font-bold text-gray-900' : 'font-medium text-gray-400'}`}>
-                {step}
-              </span>
-            </div>
-          ))}
+      <div className="bg-white rounded-3xl border border-gray-100 shadow-sm mb-8 relative">
+        <div className="px-6 py-12 md:p-12 md:pb-16">
+          <div className="relative flex justify-between items-center z-10 w-full">
+            
+            {/* Horizontal Line Background */}
+            <div className="absolute top-1/2 left-0 w-full h-1 md:h-1.5 bg-gray-100 -z-10 rounded-full -translate-y-1/2"></div>
+            {/* Horizontal Line Active */}
+            <div 
+              className="absolute top-1/2 left-0 h-1 md:h-1.5 bg-blue-600 -z-10 rounded-full transition-all duration-1000 ease-out -translate-y-1/2" 
+              style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
+            ></div>
+            
+            {steps.map((step, index) => {
+              const isCompleted = index < currentStep;
+              const isActive = index === currentStep;
+              
+              return (
+                <div key={step} className="flex flex-col items-center relative group bg-white z-10">
+                  {/* Dot */}
+                  <div className={`rounded-full flex items-center justify-center font-black shadow-sm transition-all duration-500 ${
+                    isCompleted 
+                      ? 'bg-blue-600 text-white w-8 h-8 md:w-12 md:h-12 border-2 md:border-4 border-white' 
+                      : isActive 
+                        ? 'bg-white border-blue-600 text-blue-600 ring-4 ring-blue-50 w-12 h-12 border-4' 
+                        : 'bg-white border-gray-200 text-gray-400 w-8 h-8 md:w-12 md:h-12 border-2 md:border-4'
+                  }`}>
+                    {isCompleted ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-6 md:w-6" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <span className={isActive ? 'text-lg md:text-xl' : 'text-xs md:text-base'}>{index + 1}</span>
+                    )}
+                  </div>
+
+                  {/* Label */}
+                  <span className={`absolute top-14 left-1/2 -translate-x-1/2 text-center px-2 bg-white whitespace-nowrap transition-all duration-300 ${
+                    isActive 
+                      ? 'block font-black text-blue-600 text-sm md:text-base scale-110 md:scale-100' 
+                      : 'hidden md:block text-xs md:text-sm font-medium text-gray-400'
+                  } ${isCompleted ? 'md:text-gray-900 md:font-bold' : ''}`}>
+                    {step}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 

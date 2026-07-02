@@ -9,8 +9,11 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Hero Section */}
+    <div className="bg-gray-50 min-h-screen">
+      <title>Contact Us | Z.A Graphics</title>
+      <meta name="description" content="Get in touch with Z.A Graphics. Reach our support team for any inquiries regarding your bulk printing orders, custom quotes, or technical assistance." />
+      
+      {/* Contact Hero Section */}
       <section className="bg-gray-900 text-white py-20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-blue-900/40 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">

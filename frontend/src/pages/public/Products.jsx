@@ -83,6 +83,8 @@ const Products = () => {
 
   return (
     <div className="w-full bg-gray-50 min-h-screen pt-28 md:pt-36 pb-12">
+      <title>Our Products | Z.A Graphics Bulk Printing</title>
+      <meta name="description" content="Browse our extensive catalog of premium print products including packaging, marketing materials, and stationery tailored for enterprises." />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}

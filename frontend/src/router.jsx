@@ -28,6 +28,7 @@ import Account from './pages/customer/Account';
 import CustomerOrders from './pages/customer/Orders';
 import OrderDetail from './pages/customer/OrderDetail';
 import CustomerInquiries from './pages/customer/Inquiries';
+import CustomerSettings from './pages/customer/Settings';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/Dashboard';
@@ -78,6 +79,7 @@ export const router = createBrowserRouter([
           { path: 'orders', element: <CustomerOrders /> },
           { path: 'orders/:orderId', element: <OrderDetail /> },
           { path: 'questions', element: <CustomerInquiries /> },
+          { path: 'settings', element: <CustomerSettings /> },
         ],
       },
       { path: '*', element: <NotFound /> }, // Catch-all 404

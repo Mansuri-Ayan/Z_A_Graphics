@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Package, ShoppingCart, User } from 'lucide-react';
+import { Home, Package, ShoppingCart, User, Phone } from 'lucide-react';
 
 const MobileBottomNav = () => {
   const location = useLocation();
@@ -9,6 +9,7 @@ const MobileBottomNav = () => {
   const navItems = [
     { name: 'Home', path: '/', icon: Home },
     { name: 'Products', path: '/products', icon: Package },
+    { name: 'Contact', path: '/contact', icon: Phone },
     { name: 'Cart', path: '/cart', icon: ShoppingCart },
     { name: 'Profile', path: '/account', icon: User },
   ];

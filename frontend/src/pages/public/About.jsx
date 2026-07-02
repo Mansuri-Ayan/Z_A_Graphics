@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 const About = () => {
   return (
     <div className="bg-white min-h-screen">
+      <title>About Us | Z.A Graphics</title>
+      <meta name="description" content="Learn about Z.A Graphics and our mission to empower businesses with reliable, top-tier print materials and seamless bulk ordering experiences." />
+      
       {/* Hero Section */}
       <section className="py-20 md:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute top-10 left-10 w-72 h-72 bg-blue-100/50 rounded-full blur-3xl -z-10"></div>

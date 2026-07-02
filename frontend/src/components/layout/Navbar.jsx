@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
-import { Search, User, ShoppingBag, Menu } from 'lucide-react';
+import { Search, User, ShoppingBag, LayoutDashboard } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -88,6 +88,11 @@ const Navbar = () => {
                   {cartItemCount > 9 ? '9+' : cartItemCount}
                 </span>
               )}
+            </Link>
+
+            {/* Mobile Admin Dashboard Icon (Simulating Admin User) */}
+            <Link to="/admin" className="flex lg:hidden items-center justify-center size-10 rounded-full bg-brand-black text-white shadow-md transition-all duration-300 hover:scale-105 ml-1">
+              <LayoutDashboard className="w-4 h-4" />
             </Link>
 
             <Link to="/admin" className="hidden lg:block ml-2">

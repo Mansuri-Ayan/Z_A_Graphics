@@ -16,10 +16,13 @@ import Testimonials from '../../components/feature/Testimonials';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const featuredProducts = products.slice(0, 4);
+  const featuredProducts = products.slice(0, 12);
 
   return (
     <div className="w-full">
+      <title>Z.A Graphics | Premium B2B Printing & Packaging Solutions</title>
+      <meta name="description" content="Elevate your brand with Z.A Graphics. We specialize in premium business cards, corrugated shipping boxes, and custom marketing materials for businesses." />
+      
       <Hero content={heroContent} />
       <ServicesStrip services={servicesContent} />
 
@@ -41,6 +44,15 @@ const Home = () => {
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <Link 
+              to="/products" 
+              className="inline-flex items-center justify-center rounded-xl bg-brand-blue px-8 py-4 text-base font-bold text-white shadow-lg shadow-brand-blue/30 transition-all duration-300 hover:scale-105 hover:bg-blue-600 hover:shadow-brand-blue/50"
+            >
+              View More Products
+            </Link>
           </div>
         </div>
       </section>

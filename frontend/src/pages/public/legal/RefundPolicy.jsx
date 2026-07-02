@@ -3,6 +3,9 @@ import React from 'react';
 const RefundPolicy = () => {
   return (
     <div className="max-w-4xl mx-auto pt-32 pb-16 px-6 lg:px-8">
+      <title>Cancellation & Refund Policy | Z.A Graphics</title>
+      <meta name="description" content="Z.A Graphics Cancellation & Refund Policy. Understand our terms regarding order modifications, cancellations, and refunds for custom print orders." />
+      
       <h1 className="text-4xl font-black text-gray-900 mb-8">Cancellation & Refund Policy</h1>
       
       <div className="space-y-8 text-gray-700 leading-relaxed">

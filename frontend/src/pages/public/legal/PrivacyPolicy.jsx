@@ -3,6 +3,9 @@ import React from 'react';
 const PrivacyPolicy = () => {
   return (
     <div className="max-w-4xl mx-auto pt-32 pb-16 px-6 lg:px-8">
+      <title>Privacy Policy | Z.A Graphics</title>
+      <meta name="description" content="Review the Privacy Policy of Z.A Graphics to understand how we collect, use, and protect your data according to Indian regulations." />
+      
       <h1 className="text-4xl font-black text-gray-900 mb-8">Privacy Policy</h1>
       
       <div className="space-y-8 text-gray-700 leading-relaxed">
