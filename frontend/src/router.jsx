@@ -18,6 +18,10 @@ import ForgotPassword from './pages/public/ForgotPassword';
 import Contact from './pages/public/Contact';
 import About from './pages/public/About';
 import NotFound from './pages/public/NotFound';
+import TermsOfService from './pages/public/legal/TermsOfService';
+import PrivacyPolicy from './pages/public/legal/PrivacyPolicy';
+import RefundPolicy from './pages/public/legal/RefundPolicy';
+import ShippingPolicy from './pages/public/legal/ShippingPolicy';
 
 // Customer Pages
 import Account from './pages/customer/Account';
@@ -62,6 +66,10 @@ export const router = createBrowserRouter([
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
       { path: '/forgot-password', element: <ForgotPassword /> },
+      { path: '/legal/terms', element: <TermsOfService /> },
+      { path: '/legal/privacy', element: <PrivacyPolicy /> },
+      { path: '/legal/refund', element: <RefundPolicy /> },
+      { path: '/legal/shipping', element: <ShippingPolicy /> },
       {
         path: '/account',
         element: <CustomerLayout />,

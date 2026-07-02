@@ -45,13 +45,19 @@ const Footer = () => (
         </div>
 
         {/* Right: Links & Address */}
-        <div className="md:w-1/2 flex flex-col sm:flex-row justify-between md:justify-end gap-12 md:gap-24">
+        <div className="md:w-[60%] grid grid-cols-2 sm:grid-cols-3 gap-12 md:gap-8 justify-items-start md:justify-items-end">
 
           <div className="flex flex-col gap-6">
             <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500">Sitemap</h4>
             <Link to="/products" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">Products</Link>
             <Link to="/about" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">Our Story</Link>
             <Link to="/contact" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">Contact</Link>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500">Legal</h4>
+            <Link to="/legal/refund" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">Refund Policy</Link>
+            <Link to="/legal/shipping" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">Shipping Info</Link>
           </div>
 
           <div className="flex flex-col gap-6">
@@ -83,8 +89,8 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-medium text-gray-500">
       <p>© {new Date().getFullYear()} Z.A Graphics. All rights reserved.</p>
       <div className="flex items-center gap-6">
-        <a href="#" className="hover:text-white transition-colors">Privacy</a>
-        <a href="#" className="hover:text-white transition-colors">Terms</a>
+        <Link to="/legal/privacy" className="hover:text-white transition-colors">Privacy</Link>
+        <Link to="/legal/terms" className="hover:text-white transition-colors">Terms</Link>
         <p>Mumbai, MH</p>
       </div>
     </div>
