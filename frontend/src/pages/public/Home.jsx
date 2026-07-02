@@ -22,7 +22,7 @@ const Home = () => {
     <div className="w-full">
       <Hero content={heroContent} />
       <ServicesStrip services={servicesContent} />
-      
+
       {/* Featured Products Section */}
       <section className="bg-brand-white py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

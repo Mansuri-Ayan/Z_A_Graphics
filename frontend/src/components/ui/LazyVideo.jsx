@@ -12,6 +12,7 @@ export const LazyVideo = ({
   muted = true,
   loop = false,
   rootMargin = '240px',
+  videoRef,
   ...props
 }) => {
   const { ref, hasIntersected } = useIntersection({ rootMargin, triggerOnce: true });
@@ -36,6 +37,7 @@ export const LazyVideo = ({
 
       {hasIntersected && (
         <video
+          ref={videoRef}
           className="h-full w-full object-cover"
           controls={controls}
           autoPlay={autoPlay}

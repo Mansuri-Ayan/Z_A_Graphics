@@ -82,20 +82,26 @@ const Products = () => {
   const hasMore = visibleCount < filteredAndSortedProducts.length;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-gray-50 min-h-screen">
-      <div className="mb-8">
-        <div className="text-sm text-gray-500 mb-2 font-medium">
-          <Link to="/" className="hover:text-blue-600 transition-colors">Home</Link> <span className="mx-2">&gt;</span> <span className="text-gray-900">All Products</span>
-        </div>
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between">
-          <div>
-            <h1 className="text-4xl font-black text-gray-900 mb-2">Our Products</h1>
-            <p className="text-gray-500 font-medium">Showing {filteredAndSortedProducts.length} results</p>
+    <div className="w-full bg-gray-50 min-h-screen pt-28 md:pt-36 pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header Section */}
+        <div className="mb-10">
+          <div className="text-sm text-gray-500 mb-4 font-medium flex items-center gap-2">
+            <Link to="/" className="hover:text-brand-blue transition-colors">Home</Link> 
+            <span className="text-gray-300">/</span> 
+            <span className="text-gray-900 font-bold">All Products</span>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-black text-brand-black tracking-tight mb-2">Our Products</h1>
+              <p className="text-gray-500 font-medium">Showing {filteredAndSortedProducts.length} premium options</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="flex flex-col md:flex-row gap-8">
+        {/* Main Grid Layout */}
+        <div className="flex flex-col md:flex-row gap-8 lg:gap-12">
         
         <ProductFilters 
           isMobileOpen={isMobileFilterOpen}
@@ -117,8 +123,8 @@ const Products = () => {
           />
 
           {loading ? (
-             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-               {Array(8).fill(0).map((_, i) => (
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+               {Array(6).fill(0).map((_, i) => (
                  <Skeleton key={`skel-${i}`} variant="card" />
                ))}
              </div>
@@ -142,7 +148,7 @@ const Products = () => {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 {displayedProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
@@ -157,6 +163,7 @@ const Products = () => {
             </>
           )}
         </div>
+      </div>
       </div>
     </div>
   );

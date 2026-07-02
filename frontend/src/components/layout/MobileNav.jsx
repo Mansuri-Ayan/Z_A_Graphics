@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { X, LogIn, ChevronRight } from 'lucide-react';
 
 const MobileNav = ({ isOpen, onClose, isActive }) => {
   // Prevent scrolling when drawer is open
@@ -23,75 +24,77 @@ const MobileNav = ({ isOpen, onClose, isActive }) => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [onClose]);
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-30 md:hidden flex">
+    <div 
+      className={`fixed inset-0 z-[100] md:hidden flex justify-end pointer-events-none ${
+        isOpen ? 'pointer-events-auto' : ''
+      }`}
+    >
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-brand-black/50 transition-opacity" 
+        className={`fixed inset-0 bg-brand-black/40 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${
+          isOpen ? 'opacity-100' : 'opacity-0'
+        }`} 
         onClick={onClose}
         aria-hidden="true"
       ></div>
 
       {/* Drawer */}
-      <div className="relative flex flex-col w-4/5 max-w-sm h-full bg-white shadow-xl animate-slide-in">
+      <div 
+        className={`relative flex flex-col w-[85%] max-w-sm h-full bg-white/95 backdrop-blur-xl border-l border-gray-200/50 shadow-[0_0_40px_rgba(0,0,0,0.1)] transform transition-transform duration-300 ease-in-out z-10 ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        
         {/* Header */}
-        <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200">
-          <span className="text-xl font-bold text-brand-blue tracking-tight">Z.A Graphics</span>
+        <div className="h-24 flex items-center justify-between px-6 border-b border-gray-200/50 pt-4">
+          <div className="flex items-center gap-3">
+            <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-blue to-blue-400 shadow-lg shadow-brand-blue/30 text-sm font-black text-white">
+              ZA
+            </div>
+            <span className="text-xl font-bold tracking-tight text-brand-black">Z.A Graphics</span>
+          </div>
           <button 
             onClick={onClose}
-            className="text-gray-500 hover:text-brand-black p-2 rounded-md"
+            className="flex items-center justify-center size-10 rounded-full text-gray-500 hover:text-brand-black hover:bg-gray-100 transition-colors"
             aria-label="Close menu"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <X className="w-6 h-6" />
           </button>
         </div>
 
         {/* Links */}
-        <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-          <Link 
-            to="/" 
-            className={`block px-3 py-3 rounded-md text-base font-medium ${isActive('/') ? 'bg-blue-50 text-brand-blue' : 'text-gray-700 hover:bg-gray-50'}`}
-            onClick={onClose}
-          >
-            Home
-          </Link>
-          <Link 
-            to="/products" 
-            className={`block px-3 py-3 rounded-md text-base font-medium ${isActive('/products') ? 'bg-blue-50 text-brand-blue' : 'text-gray-700 hover:bg-gray-50'}`}
-            onClick={onClose}
-          >
-            Products
-          </Link>
-          <Link 
-            to="/about" 
-            className={`block px-3 py-3 rounded-md text-base font-medium ${isActive('/about') ? 'bg-blue-50 text-brand-blue' : 'text-gray-700 hover:bg-gray-50'}`}
-            onClick={onClose}
-          >
-            About
-          </Link>
-          <Link 
-            to="/contact" 
-            className={`block px-3 py-3 rounded-md text-base font-medium ${isActive('/contact') ? 'bg-blue-50 text-brand-blue' : 'text-gray-700 hover:bg-gray-50'}`}
-            onClick={onClose}
-          >
-            Contact
-          </Link>
+        <nav className="flex-1 px-4 py-8 space-y-2 overflow-y-auto">
+          {[
+            { path: '/', label: 'Home' },
+            { path: '/products', label: 'Products' },
+            { path: '/about', label: 'About' },
+            { path: '/contact', label: 'Contact' },
+          ].map((item) => (
+            <Link 
+              key={item.path}
+              to={item.path} 
+              className={`group flex items-center justify-between px-4 py-4 rounded-xl text-base font-medium transition-all duration-300 ${
+                isActive(item.path) 
+                  ? 'bg-brand-blue/10 text-brand-blue border border-brand-blue/20' 
+                  : 'text-gray-600 hover:bg-gray-50 hover:text-brand-black border border-transparent'
+              }`}
+              onClick={onClose}
+            >
+              {item.label}
+              <ChevronRight className={`w-5 h-5 transition-transform duration-300 ${isActive(item.path) ? 'text-brand-blue translate-x-1' : 'text-gray-400 group-hover:text-gray-600 group-hover:translate-x-1'}`} />
+            </Link>
+          ))}
         </nav>
 
         {/* Footer actions */}
-        <div className="p-4 border-t border-gray-200">
+        <div className="p-6 border-t border-gray-200/50 pb-12">
           <Link 
             to="/login" 
-            className="flex items-center justify-center w-full bg-gray-50 text-brand-black px-4 py-3 rounded-md border border-gray-200 font-medium hover:bg-gray-100 transition-colors"
+            className="flex items-center justify-center w-full bg-white text-brand-black px-4 py-4 rounded-xl border border-gray-200/50 shadow-sm font-bold hover:bg-gray-50 hover:shadow-md transition-all duration-300 gap-3"
             onClick={onClose}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
+            <LogIn className="w-5 h-5 text-gray-500" />
             Sign In / Account
           </Link>
         </div>

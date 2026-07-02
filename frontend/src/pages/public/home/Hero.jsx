@@ -1,64 +1,82 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../../../components/ui/Button';
-import heroImage from '../../../assets/home-hero-print.png';
+import { LazyVideo } from '../../../components/ui/LazyVideo';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 export const Hero = ({ content }) => {
   return (
-    <section className="overflow-hidden bg-gray-50">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 md:py-16 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-20">
-        <div className="relative z-10">
-          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-700">
-            <span className="h-2 w-2 rounded-full bg-blue-600" />
+    <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 overflow-hidden bg-[#050505]">
+      
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <LazyVideo 
+          src="https://www.w3schools.com/html/mov_bbb.mp4" 
+          poster="https://placehold.co/1920x1080/050505/ffffff?text=Loading+Experience..."
+          className="w-full h-full object-cover scale-105 transform origin-center animate-[slowPan_20s_ease-in-out_infinite_alternate]"
+          autoPlay 
+          muted 
+          loop 
+          controls={false}
+        />
+        {/* Dark Gradient Overlays for Readability and Blending */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-90" />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-10">
+        <div className="max-w-3xl">
+          
+          {/* Eyebrow Pill */}
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white shadow-sm mb-8">
+            <Sparkles className="size-4 text-brand-blue animate-pulse" />
             {content.eyebrow}
-          </span>
-          <h1 className="mt-6 max-w-2xl text-4xl font-bold leading-tight tracking-tight text-brand-black sm:text-5xl lg:text-6xl">
-            {content.title}
+          </div>
+
+          {/* Massive Cinematic Title */}
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.05] tracking-tighter text-white mb-8">
+            {/* Split title conceptually for visual flair */}
+            Big ideas deserve a <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-brand-blue">
+              brilliant finish.
+            </span>
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-7 text-gray-700 md:text-lg">
+
+          {/* Description */}
+          <p className="text-lg md:text-xl lg:text-2xl text-gray-300 font-medium max-w-2xl leading-relaxed mb-12">
             {content.description}
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link to={content.primaryAction.to} className="sm:w-auto">
-              <Button size="lg" fullWidth>
-                {content.primaryAction.label}
-                <span aria-hidden="true">→</span>
-              </Button>
+          {/* High-Contrast Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-16">
+            <Link 
+              to={content.primaryAction.to} 
+              className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-brand-blue px-8 py-4 font-bold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(0,102,255,0.4)]"
+            >
+              <span className="relative z-10 text-base md:text-lg">{content.primaryAction.label}</span>
+              <ArrowRight className="relative z-10 size-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
-            <Link to={content.secondaryAction.to} className="sm:w-auto">
-              <Button variant="ghost" size="lg" fullWidth>
-                {content.secondaryAction.label}
-              </Button>
+            
+            <Link 
+              to={content.secondaryAction.to} 
+              className="group inline-flex items-center justify-center gap-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 font-bold text-white transition-all duration-300 hover:bg-white/20 hover:scale-105"
+            >
+              <span className="text-base md:text-lg">{content.secondaryAction.label}</span>
             </Link>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4 border-t border-gray-200 pt-6">
+          {/* Floating Glassmorphic Stats */}
+          <div className="flex flex-wrap items-center gap-8 md:gap-16 pt-8 border-t border-white/20">
             {content.stats.map((stat) => (
-              <div key={stat.label}>
-                <div className="text-xl font-bold text-brand-black">{stat.value}</div>
-                <div className="mt-1 text-xs text-gray-500">{stat.label}</div>
+              <div key={stat.label} className="flex flex-col">
+                <span className="text-3xl md:text-4xl font-black text-white">{stat.value}</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-gray-400 mt-1">{stat.label}</span>
               </div>
             ))}
           </div>
-        </div>
 
-        <div className="relative">
-          <div className="absolute -left-6 -top-6 h-24 w-24 rounded-full bg-blue-100" aria-hidden="true" />
-          <div className="absolute -bottom-8 -right-8 h-32 w-32 bg-blue-600" aria-hidden="true" />
-          <div className="relative overflow-hidden rounded-md bg-brand-white p-2 shadow-xl">
-            <img
-              src={heroImage}
-              alt="A curated arrangement of premium printed business materials"
-              className="aspect-square w-full rounded object-cover sm:aspect-video lg:aspect-square"
-            />
-          </div>
-          <div className="absolute bottom-6 left-6 rounded-md bg-brand-white px-4 py-3 shadow-md">
-            <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Bulk orders from</p>
-            <p className="mt-1 text-lg font-bold text-brand-black">500 pieces</p>
-          </div>
         </div>
       </div>
+
     </section>
   );
 };

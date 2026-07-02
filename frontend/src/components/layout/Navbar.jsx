@@ -1,111 +1,106 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import MobileNav from './MobileNav';
 import { useCart } from '../../context/CartContext';
+import { Search, User, ShoppingBag, Menu } from 'lucide-react';
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const { cart } = useCart();
 
   const isActive = (path) => location.pathname === path;
   const cartItemCount = cart.length;
 
+  // Handle scroll effect for the floating nav
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
-      <header className="sticky top-0 z-20 border-b border-gray-200 bg-brand-white">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8">
-          
+      <header 
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-in-out ${
+          scrolled ? 'pt-2 px-4 sm:px-6 lg:px-8' : 'pt-6 px-4 sm:px-6 lg:px-8'
+        }`}
+      >
+        <div 
+          className={`mx-auto flex max-w-7xl items-center justify-between transition-all duration-500 ease-in-out ${
+            scrolled 
+              ? 'h-16 rounded-full bg-white/80 backdrop-blur-xl border border-gray-200/50 shadow-[0_8px_30px_rgb(0,0,0,0.08)] px-6' 
+              : 'h-20 rounded-2xl bg-white/60 backdrop-blur-lg border border-gray-200/50 shadow-sm px-6'
+          }`}
+        >
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="flex items-center gap-3" aria-label="Z.A Graphics home">
-              <span className="flex size-9 items-center justify-center rounded bg-brand-black text-sm font-black text-brand-white">ZA</span>
-              <span className="text-lg font-bold tracking-tight text-brand-black">Z.A Graphics</span>
+            <Link to="/" className="group flex items-center gap-3 transition-transform duration-300 hover:scale-105" aria-label="Z.A Graphics home">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-blue to-blue-400 shadow-lg shadow-brand-blue/30 text-sm font-black text-white">
+                ZA
+              </div>
+              <span className="text-xl font-bold tracking-tight text-brand-black group-hover:text-brand-blue transition-colors duration-300">
+                Z.A Graphics
+              </span>
             </Link>
           </div>
           
           {/* Desktop Nav */}
-          <nav className="hidden items-center gap-8 md:flex" aria-label="Primary navigation">
-            <Link 
-              to="/" 
-              className={`text-sm font-semibold transition-colors ${isActive('/') ? 'text-brand-blue' : 'text-gray-700 hover:text-brand-blue'}`}
-            >
-              Home
-            </Link>
-            <Link 
-              to="/products" 
-              className={`text-sm font-semibold transition-colors ${isActive('/products') ? 'text-brand-blue' : 'text-gray-700 hover:text-brand-blue'}`}
-            >
-              Products
-            </Link>
-            <Link 
-              to="/about" 
-              className={`text-sm font-semibold transition-colors ${isActive('/about') ? 'text-brand-blue' : 'text-gray-700 hover:text-brand-blue'}`}
-            >
-              About
-            </Link>
-            <Link 
-              to="/contact" 
-              className={`text-sm font-semibold transition-colors ${isActive('/contact') ? 'text-brand-blue' : 'text-gray-700 hover:text-brand-blue'}`}
-            >
-              Contact
-            </Link>
+          <nav className="hidden md:flex items-center gap-1 bg-white/50 rounded-full p-1 border border-gray-200/50 shadow-sm" aria-label="Primary navigation">
+            {[
+              { path: '/', label: 'Home' },
+              { path: '/products', label: 'Products' },
+              { path: '/about', label: 'About' },
+              { path: '/contact', label: 'Contact' },
+            ].map((item) => (
+              <Link 
+                key={item.path}
+                to={item.path} 
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  isActive(item.path) 
+                    ? 'bg-brand-blue text-white shadow-md shadow-brand-blue/20' 
+                    : 'text-gray-600 hover:text-brand-black hover:bg-white shadow-none'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             {/* Search Icon */}
-            <Link to="/products" className="hidden text-gray-700 transition-colors hover:text-brand-blue sm:block" aria-label="Search products">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+            <Link to="/products" className="hidden sm:flex items-center justify-center size-10 rounded-full text-gray-600 transition-all duration-300 hover:bg-gray-100 hover:text-brand-black" aria-label="Search products">
+              <Search className="w-5 h-5" />
             </Link>
             
             {/* User Icon */}
-            <Link to="/login" className="text-gray-700 hover:text-brand-blue transition-colors hidden sm:block">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
+            <Link to="/login" className="hidden sm:flex items-center justify-center size-10 rounded-full text-gray-600 transition-all duration-300 hover:bg-gray-100 hover:text-brand-black">
+              <User className="w-5 h-5" />
             </Link>
             
             {/* Cart Icon with Badge */}
-            <Link to="/cart" className="text-gray-700 hover:text-brand-blue transition-colors relative">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
+            <Link to="/cart" className="relative flex items-center justify-center size-10 rounded-full text-gray-600 transition-all duration-300 hover:bg-gray-100 hover:text-brand-black">
+              <ShoppingBag className="w-5 h-5" />
               {cartItemCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-blue-600 text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">
+                <span className="absolute 0 right-0 top-0 flex size-4 items-center justify-center rounded-full bg-brand-blue text-[10px] font-bold text-white shadow-sm animate-pulse">
                   {cartItemCount > 9 ? '9+' : cartItemCount}
                 </span>
               )}
             </Link>
 
             <Link to="/contact" className="hidden lg:block ml-2">
-              <span className="inline-flex min-h-10 items-center rounded-md bg-blue-600 px-4 text-sm font-semibold text-brand-white transition-colors hover:bg-blue-700">
-                Get a quote
+              <span className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-brand-black px-6 py-2.5 font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,0,0,0.15)]">
+                <span className="absolute inset-0 bg-gradient-to-r from-gray-800 via-brand-black to-gray-800 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                <span className="relative z-10 text-sm font-bold">Get a quote</span>
               </span>
             </Link>
 
-            {/* Mobile Menu Hamburger */}
-            <button 
-              className="md:hidden text-gray-700 hover:text-brand-blue transition-colors ml-1"
-              onClick={() => setIsMobileMenuOpen(true)}
-              aria-label="Open menu"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Navigation Drawer */}
-      <MobileNav 
-        isOpen={isMobileMenuOpen} 
-        onClose={() => setIsMobileMenuOpen(false)} 
-        isActive={isActive} 
-      />
     </>
   );
 };

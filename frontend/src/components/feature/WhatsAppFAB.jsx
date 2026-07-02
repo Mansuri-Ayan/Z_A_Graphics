@@ -6,7 +6,7 @@ const WhatsAppFAB = () => {
       href="https://wa.me/919876543210"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 animate-bounce duration-1000 group"
+      className="fixed bottom-24 md:bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 animate-bounce duration-1000 group"
       aria-label="Chat with us on WhatsApp"
     >
       <svg 

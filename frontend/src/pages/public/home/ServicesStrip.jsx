@@ -3,25 +3,37 @@ import { HomeIcon } from './HomeIcons';
 
 export const ServicesStrip = ({ services }) => {
   return (
-    <section className="border-y border-gray-200 bg-brand-white">
+    <section className="bg-[#050505] border-y border-white/5 relative overflow-hidden">
+      
+      {/* Subtle background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex overflow-x-auto md:grid md:grid-cols-4 md:overflow-visible">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/10 relative z-10">
+          
           {services.map((service) => (
             <article
               key={service.id}
-              className="min-w-64 border-r border-gray-200 px-4 py-6 first:border-l md:min-w-0 md:px-6"
+              className="group relative flex items-center gap-6 px-6 py-12 transition-all duration-500 hover:bg-white/5 cursor-pointer overflow-hidden"
             >
-              <div className="flex items-center gap-4">
-                <div className="flex size-10 shrink-0 items-center justify-center text-blue-700">
-                  <HomeIcon name={service.icon} />
-                </div>
-                <div>
-                  <h2 className="text-sm font-bold text-gray-900">{service.label}</h2>
-                  <p className="mt-1 text-xs text-gray-500">{service.detail}</p>
-                </div>
+              {/* Subtle hover gradient inside the block */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/0 via-transparent to-brand-blue/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
+
+              <div className="relative z-10 flex size-12 shrink-0 items-center justify-center text-gray-500 transition-colors duration-500 group-hover:text-white">
+                <HomeIcon name={service.icon} className="size-8" />
+              </div>
+              
+              <div className="relative z-10">
+                <h2 className="text-lg font-medium text-gray-300 tracking-tight transition-colors duration-300 group-hover:text-white">
+                  {service.label}
+                </h2>
+                <p className="mt-1.5 text-sm text-gray-500 font-medium">
+                  {service.detail}
+                </p>
               </div>
             </article>
           ))}
+          
         </div>
       </div>
     </section>
