@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { X, LogIn, ChevronRight } from 'lucide-react';
+import logo from '../../assets/logo/logo.png';
 
 const MobileNav = ({ isOpen, onClose, isActive }) => {
   // Prevent scrolling when drawer is open
@@ -49,9 +50,7 @@ const MobileNav = ({ isOpen, onClose, isActive }) => {
         {/* Header */}
         <div className="h-24 flex items-center justify-between px-6 border-b border-gray-200/50 pt-4">
           <div className="flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-blue to-blue-400 shadow-lg shadow-brand-blue/30 text-sm font-black text-white">
-              ZA
-            </div>
+            <img src={logo} alt="Z.A Graphics Logo" className="h-10 w-auto object-contain" />
             <span className="text-xl font-bold tracking-tight text-brand-black">Z.A Graphics</span>
           </div>
           <button 

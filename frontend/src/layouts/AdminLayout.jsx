@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
+import logo from '../assets/logo/logo.png';
 
 const AdminLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -51,7 +52,7 @@ const AdminLayout = () => {
       <aside className={`fixed inset-y-0 left-0 w-72 bg-gray-900 text-white z-50 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static transition-transform duration-300 ease-in-out shadow-xl flex flex-col`}>
         <div className="h-20 flex items-center justify-center border-b border-gray-800 px-6">
           <Link to="/admin/dashboard" className="flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center rounded-lg bg-blue-600 text-sm font-black text-white shadow-md">ZA</span>
+            <img src={logo} alt="Z.A Graphics Logo" className="h-10 w-auto object-contain" />
             <span className="text-xl font-black tracking-widest text-white uppercase">Admin</span>
           </Link>
         </div>
