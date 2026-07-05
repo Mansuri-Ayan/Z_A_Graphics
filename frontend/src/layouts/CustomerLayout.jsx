@@ -20,7 +20,7 @@ const CustomerLayout = () => {
     <div className="bg-gray-50 min-h-screen pb-16">
       
       {/* E-commerce Premium Top Banner */}
-      <div className="bg-white border-b border-gray-100 pt-32 md:pt-40 pb-16 relative overflow-hidden">
+      <div className="bg-white border-b border-gray-100 pt-32 md:pt-40 pb-8 md:pb-16 relative overflow-hidden">
         {/* Dynamic Abstract Background */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-brand-blue/10 via-blue-100/20 to-transparent rounded-full blur-[80px] transform translate-x-1/4 -translate-y-1/4"></div>
@@ -75,8 +75,8 @@ const CustomerLayout = () => {
       </div>
 
       {/* Main Dashboard Layout */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 relative z-20">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 md:pt-12 relative z-20">
+        <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-12">
           
           {/* Streamlined Sidebar */}
           <aside className="w-full lg:w-1/4">
@@ -110,7 +110,7 @@ const CustomerLayout = () => {
           </aside>
 
           {/* Main Content Area */}
-          <main className="w-full lg:w-3/4 pt-8 lg:pt-0">
+          <main className="w-full lg:w-3/4 pt-4 lg:pt-0">
             <Outlet />
           </main>
         </div>

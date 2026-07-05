@@ -92,7 +92,7 @@ export const ToastProvider = ({ children }) => {
       {children}
       {createPortal(
         <div 
-          className="pointer-events-none fixed bottom-4 right-4 z-50 flex w-full max-w-sm flex-col gap-3 px-4"
+          className="pointer-events-none fixed top-24 right-4 md:right-8 z-50 flex w-full max-w-sm flex-col gap-3 px-4"
           aria-live="polite"
           aria-atomic="true"
         >

@@ -142,21 +142,21 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      <div className="mt-10 md:mt-16 bg-white p-5 sm:p-8 md:p-12 rounded-[1.5rem] md:rounded-3xl border border-gray-100 shadow-sm">
-        <h2 className="text-xl md:text-3xl font-black text-gray-900 mb-6 md:mb-10 text-center">Frequently Asked Questions</h2>
+      <div className="mt-8 md:mt-16 bg-white p-4 sm:p-6 md:p-12 rounded-[1.5rem] md:rounded-3xl border border-gray-100 shadow-sm">
+        <h2 className="text-lg md:text-3xl font-black text-gray-900 mb-4 md:mb-10 text-center">Frequently Asked Questions</h2>
         
-        <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12">
-          <div className="p-4 md:p-6 rounded-[1rem] md:rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 flex flex-col justify-between">
+        <div className="grid md:grid-cols-2 gap-3 md:gap-6 mb-6 md:mb-12">
+          <div className="p-3 md:p-6 rounded-[1rem] md:rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 flex flex-col justify-between">
             <div>
-              <p className="font-bold text-gray-900 mb-3 flex items-start">
-                <span className="text-blue-600 mr-3 text-xl">Q.</span>
+              <p className="font-bold text-sm md:text-base text-gray-900 mb-2 md:mb-3 flex items-start">
+                <span className="text-blue-600 mr-2 md:mr-3 text-lg md:text-xl">Q.</span>
                 Can I print different names on the cards in one bulk order?
               </p>
-              <p className="text-gray-600 text-base leading-relaxed pl-8">
+              <p className="text-gray-600 text-xs md:text-base leading-relaxed pl-6 md:pl-8">
                 Yes, you can upload a multi-page PDF or a zip file containing the different designs.
               </p>
             </div>
-            <div className="flex items-center gap-4 pl-8 mt-4 pt-4 border-t border-gray-100">
+            <div className="flex items-center gap-4 pl-6 md:pl-8 mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-100">
               <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Was this helpful?</span>
               <div className="flex gap-2">
                 <button className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"><ThumbsUp className="w-4 h-4" /></button>
@@ -164,17 +164,17 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
-          <div className="p-4 md:p-6 rounded-[1rem] md:rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 flex flex-col justify-between">
+          <div className="p-3 md:p-6 rounded-[1rem] md:rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 flex flex-col justify-between">
             <div>
-              <p className="font-bold text-gray-900 mb-3 flex items-start">
-                <span className="text-blue-600 mr-3 text-xl">Q.</span>
+              <p className="font-bold text-sm md:text-base text-gray-900 mb-2 md:mb-3 flex items-start">
+                <span className="text-blue-600 mr-2 md:mr-3 text-lg md:text-xl">Q.</span>
                 What is the paper thickness?
               </p>
-              <p className="text-gray-600 text-base leading-relaxed pl-8">
+              <p className="text-gray-600 text-xs md:text-base leading-relaxed pl-6 md:pl-8">
                 Our standard business cards use 300 GSM premium cardstock.
               </p>
             </div>
-            <div className="flex items-center gap-4 pl-8 mt-4 pt-4 border-t border-gray-100">
+            <div className="flex items-center gap-4 pl-6 md:pl-8 mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-100">
               <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Was this helpful?</span>
               <div className="flex gap-2">
                 <button className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"><ThumbsUp className="w-4 h-4" /></button>
@@ -184,14 +184,14 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        <div className="bg-blue-50 p-5 md:p-8 rounded-[1rem] md:rounded-2xl max-w-2xl mx-auto border border-blue-100">
+        <div className="bg-blue-50 p-4 md:p-8 rounded-[1rem] md:rounded-2xl max-w-2xl mx-auto border border-blue-100">
           {!isAsking ? (
             <div className="text-center">
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Still have questions?</h3>
-              <p className="text-gray-600 mb-6">Ask a question if you have any.</p>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">Still have questions?</h3>
+              <p className="text-xs md:text-base text-gray-600 mb-4 md:mb-6">Ask a question if you have any.</p>
               <button 
                 onClick={() => setIsAsking(true)}
-                className="inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-xl shadow-sm hover:shadow-md transition-all"
+                className="inline-block bg-white text-blue-600 text-sm md:text-base font-bold py-2 px-6 md:py-3 md:px-8 rounded-lg md:rounded-xl shadow-sm hover:shadow-md transition-all"
               >
                 Ask a question
               </button>
