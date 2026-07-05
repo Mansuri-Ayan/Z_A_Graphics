@@ -4,7 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 
 export const CtaBanner = ({ content }) => {
   return (
-    <section className="relative bg-white py-32 md:py-48 overflow-hidden border-t border-gray-100 flex items-center justify-center">
+    <section className="relative bg-white py-16 sm:py-24 md:py-48 overflow-hidden border-t border-gray-100 flex items-center justify-center">
       
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -19,12 +19,12 @@ export const CtaBanner = ({ content }) => {
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         
         {/* Minimal Eyebrow */}
-        <p className="text-sm font-bold uppercase tracking-widest text-brand-blue mb-8">
+        <p className="text-[10px] md:text-sm font-bold uppercase tracking-widest text-brand-blue mb-4 md:mb-8">
           {content.eyebrow}
         </p>
 
         {/* Massive Typographic Headline */}
-        <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] font-black tracking-tighter text-brand-black leading-[0.9] mb-12 max-w-5xl">
+        <h2 className="text-4xl sm:text-6xl md:text-8xl lg:text-[8rem] font-black tracking-tighter text-brand-black leading-[0.9] mb-6 md:mb-12 max-w-5xl">
           Let's make something <br className="hidden md:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-blue-500 to-indigo-600 inline-block mt-2">
             worth holding on to.
@@ -32,7 +32,7 @@ export const CtaBanner = ({ content }) => {
         </h2>
 
         {/* Refined Description */}
-        <p className="text-xl md:text-2xl text-gray-500 font-medium max-w-2xl mb-16 leading-relaxed">
+        <p className="text-base sm:text-xl md:text-2xl text-gray-500 font-medium max-w-2xl mb-8 md:mb-16 leading-relaxed">
           {content.description}
         </p>
 
@@ -45,10 +45,10 @@ export const CtaBanner = ({ content }) => {
           <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-brand-blue to-indigo-600 opacity-30 blur-lg transition duration-500 group-hover:opacity-100 group-hover:duration-200"></div>
           
           {/* Actual Button */}
-          <div className="relative flex items-center gap-4 rounded-full bg-brand-black px-10 py-5 text-lg font-bold text-white transition-transform duration-300 group-hover:scale-[1.02]">
+          <div className="relative flex items-center gap-3 md:gap-4 rounded-full bg-brand-black px-6 py-3 md:px-10 md:py-5 text-base md:text-lg font-bold text-white transition-transform duration-300 group-hover:scale-[1.02]">
             <span>{content.action.label}</span>
-            <div className="flex size-10 items-center justify-center rounded-full bg-white/20 transition-transform duration-500 group-hover:bg-brand-blue group-hover:rotate-45">
-              <ArrowUpRight className="size-5 text-white" />
+            <div className="flex size-8 md:size-10 items-center justify-center rounded-full bg-white/20 transition-transform duration-500 group-hover:bg-brand-blue group-hover:rotate-45 shrink-0">
+              <ArrowUpRight className="size-4 md:size-5 text-white" />
             </div>
           </div>
         </Link>

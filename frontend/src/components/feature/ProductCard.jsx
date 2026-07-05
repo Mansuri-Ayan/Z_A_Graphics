@@ -12,29 +12,29 @@ const ProductCard = ({ product }) => {
           alt={product.name}
           className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute top-3 left-3">
-          <Badge variant="primary" className="backdrop-blur-md bg-white/80">
+        <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
+          <Badge variant="primary" className="backdrop-blur-md bg-white/80 text-[10px] sm:text-xs px-1.5 py-0.5 sm:px-2.5 sm:py-0.5">
             Min Qty: {product.minOrderQty}
           </Badge>
         </div>
       </Link>
       
-      <div className="p-5 flex flex-col flex-grow">
-        <div className="mb-1 text-xs font-semibold tracking-wider text-blue-600 uppercase">
+      <div className="p-2 sm:p-4 md:p-5 flex flex-col flex-grow">
+        <div className="mb-1 text-[10px] sm:text-xs font-semibold tracking-wider text-blue-600 uppercase truncate">
           {product.category}
         </div>
         <Link to={`/products/${product.id}`} className="hover:text-blue-600 transition-colors">
-          <h3 className="text-lg font-bold text-gray-900 line-clamp-1">{product.name}</h3>
+          <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 line-clamp-1">{product.name}</h3>
         </Link>
-        <div className="mt-auto pt-4 flex items-center justify-between">
-          <span className="text-xl font-black text-gray-900">
+        <div className="mt-auto pt-2 sm:pt-4 flex items-center justify-between">
+          <span className="text-sm sm:text-lg md:text-xl font-black text-gray-900">
             ${product.price.toFixed(2)}
           </span>
           <Link 
             to={`/products/${product.id}`}
-            className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-700 hover:bg-blue-600 hover:text-white transition-colors"
+            className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-700 hover:bg-blue-600 hover:text-white transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
             </svg>
           </Link>

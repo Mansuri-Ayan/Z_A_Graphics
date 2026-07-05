@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
+import { useLenis } from 'lenis/react';
 
 const InstagramIcon = (props) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -22,54 +23,69 @@ const FacebookIcon = (props) => (
   </svg>
 );
 
-const Footer = () => (
-  <footer className="bg-[#050505] text-white pt-20 md:pt-32 relative overflow-hidden rounded-t-[2.5rem] md:rounded-t-[4rem]">
+const Footer = () => {
+  const location = useLocation();
+  const lenis = useLenis();
 
-    {/* Decorative Top Glow */}
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(0,102,255,0.15),transparent_70%)] pointer-events-none" />
+  const handleSamePageScroll = (e, path) => {
+    if (location.pathname === path) {
+      e.preventDefault();
+      if (lenis) {
+        lenis.scrollTo(0);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
 
-    <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+  return (
+    <footer className="bg-[#050505] text-white pt-12 md:pt-32 relative overflow-hidden rounded-t-3xl md:rounded-t-[4rem]">
+
+      {/* Decorative Top Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(0,102,255,0.15),transparent_70%)] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
 
       {/* Top Section: Navigation & Info */}
-      <div className="flex flex-col md:flex-row justify-between gap-16 md:gap-8 mb-24">
+      <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-8 mb-12 md:mb-24">
 
         {/* Left: Contact CTA */}
         <div className="md:w-1/2">
-          <p className="text-sm font-bold uppercase tracking-widest text-brand-blue mb-6">Let's Talk</p>
-          <a href="mailto:hello@zagraphics.com" className="group inline-flex items-center gap-4 text-3xl md:text-5xl font-medium tracking-tight text-white hover:text-brand-blue transition-colors duration-500">
+          <p className="text-[10px] md:text-sm font-bold uppercase tracking-widest text-brand-blue mb-4 md:mb-6">Let's Talk</p>
+          <a href="mailto:hello@zagraphics.com" className="group inline-flex items-center gap-3 md:gap-4 text-2xl sm:text-3xl md:text-5xl font-medium tracking-tight text-white hover:text-brand-blue transition-colors duration-500">
             hello@zagraphics.com
-            <div className="flex size-10 md:size-14 items-center justify-center rounded-full bg-white/10 group-hover:bg-brand-blue transition-all duration-500 group-hover:rotate-45">
-              <ArrowUpRight className="text-white size-5 md:size-6" />
+            <div className="flex size-8 md:size-14 items-center justify-center rounded-full bg-white/10 group-hover:bg-brand-blue transition-all duration-500 group-hover:rotate-45 shrink-0">
+              <ArrowUpRight className="text-white size-4 md:size-6" />
             </div>
           </a>
         </div>
 
         {/* Right: Links & Address */}
-        <div className="md:w-[60%] grid grid-cols-2 sm:grid-cols-3 gap-12 md:gap-8 justify-items-start md:justify-items-end">
+        <div className="md:w-[60%] grid grid-cols-2 sm:grid-cols-3 gap-8 md:gap-8 justify-items-start md:justify-items-end">
 
-          <div className="flex flex-col gap-6">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500">Sitemap</h4>
-            <Link to="/products" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">Products</Link>
-            <Link to="/about" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">Our Story</Link>
-            <Link to="/contact" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">Contact</Link>
+          <div className="flex flex-col gap-4 md:gap-6">
+            <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-500">Sitemap</h4>
+            <Link to="/products" onClick={(e) => handleSamePageScroll(e, '/products')} className="text-sm md:text-lg font-medium text-gray-300 hover:text-white transition-colors">Products</Link>
+            <Link to="/about" onClick={(e) => handleSamePageScroll(e, '/about')} className="text-sm md:text-lg font-medium text-gray-300 hover:text-white transition-colors">Our Story</Link>
+            <Link to="/contact" onClick={(e) => handleSamePageScroll(e, '/contact')} className="text-sm md:text-lg font-medium text-gray-300 hover:text-white transition-colors">Contact</Link>
           </div>
 
-          <div className="flex flex-col gap-6">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500">Legal</h4>
-            <Link to="/legal/refund" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">Refund Policy</Link>
-            <Link to="/legal/shipping" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">Shipping Info</Link>
+          <div className="flex flex-col gap-4 md:gap-6">
+            <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-500">Legal</h4>
+            <Link to="/legal/refund" onClick={(e) => handleSamePageScroll(e, '/legal/refund')} className="text-sm md:text-lg font-medium text-gray-300 hover:text-white transition-colors">Refund Policy</Link>
+            <Link to="/legal/shipping" onClick={(e) => handleSamePageScroll(e, '/legal/shipping')} className="text-sm md:text-lg font-medium text-gray-300 hover:text-white transition-colors">Shipping Info</Link>
           </div>
 
-          <div className="flex flex-col gap-6">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500">Socials</h4>
-            <a href="#" className="flex items-center gap-3 text-lg font-medium text-gray-300 hover:text-white transition-colors group">
-              <InstagramIcon className="size-5 group-hover:-translate-y-1 transition-transform" /> Instagram
+          <div className="flex flex-col gap-4 md:gap-6">
+            <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-500">Socials</h4>
+            <a href="#" className="flex items-center gap-2 md:gap-3 text-sm md:text-lg font-medium text-gray-300 hover:text-white transition-colors group">
+              <InstagramIcon className="size-4 md:size-5 group-hover:-translate-y-1 transition-transform" /> Instagram
             </a>
-            <a href="#" className="flex items-center gap-3 text-lg font-medium text-gray-300 hover:text-white transition-colors group">
-              <TwitterIcon className="size-5 group-hover:-translate-y-1 transition-transform" /> Twitter
+            <a href="#" className="flex items-center gap-2 md:gap-3 text-sm md:text-lg font-medium text-gray-300 hover:text-white transition-colors group">
+              <TwitterIcon className="size-4 md:size-5 group-hover:-translate-y-1 transition-transform" /> Twitter
             </a>
-            <a href="#" className="flex items-center gap-3 text-lg font-medium text-gray-300 hover:text-white transition-colors group">
-              <FacebookIcon className="size-5 group-hover:-translate-y-1 transition-transform" /> Facebook
+            <a href="#" className="flex items-center gap-2 md:gap-3 text-sm md:text-lg font-medium text-gray-300 hover:text-white transition-colors group">
+              <FacebookIcon className="size-4 md:size-5 group-hover:-translate-y-1 transition-transform" /> Facebook
             </a>
           </div>
 
@@ -89,13 +105,14 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-medium text-gray-500">
       <p>© {new Date().getFullYear()} Z.A Graphics. All rights reserved.</p>
       <div className="flex items-center gap-6">
-        <Link to="/legal/privacy" className="hover:text-white transition-colors">Privacy</Link>
-        <Link to="/legal/terms" className="hover:text-white transition-colors">Terms</Link>
+        <Link to="/legal/privacy" onClick={(e) => handleSamePageScroll(e, '/legal/privacy')} className="hover:text-white transition-colors">Privacy</Link>
+        <Link to="/legal/terms" onClick={(e) => handleSamePageScroll(e, '/legal/terms')} className="hover:text-white transition-colors">Terms</Link>
         <p>Mumbai, MH</p>
       </div>
     </div>
 
   </footer>
-);
+  );
+};
 
 export default Footer;

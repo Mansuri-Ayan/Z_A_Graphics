@@ -53,15 +53,17 @@ const ProductDetail = () => {
   const video = "https://www.w3schools.com/html/mov_bbb.mp4";
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-48 md:pb-16 bg-gray-50 min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-32 md:pb-16 bg-gray-50 min-h-screen">
       {/* Breadcrumbs */}
-      <div className="text-sm text-gray-500 mb-8 font-medium">
-        <Link to="/" className="hover:text-blue-600 transition-colors">Home</Link> <span className="mx-2">&gt;</span> 
-        <Link to="/products" className="hover:text-blue-600 transition-colors">Products</Link> <span className="mx-2">&gt;</span> 
-        <span className="text-gray-900">{product.name}</span>
+      <div className="text-xs md:text-sm text-gray-500 mb-4 md:mb-8 font-medium flex items-center gap-2 flex-wrap">
+        <Link to="/" className="hover:text-blue-600 transition-colors">Home</Link> 
+        <span className="text-gray-300">/</span> 
+        <Link to="/products" className="hover:text-blue-600 transition-colors">Products</Link> 
+        <span className="text-gray-300">/</span> 
+        <span className="text-gray-900 font-bold truncate">{product.name}</span>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-12 bg-white p-6 md:p-10 rounded-3xl border border-gray-100 shadow-sm">
+      <div className="flex flex-col lg:flex-row gap-6 md:gap-12 bg-white p-4 sm:p-6 md:p-10 rounded-[1.5rem] md:rounded-3xl border border-gray-100 shadow-sm">
         {/* Left: Media Gallery */}
         <div className="w-full lg:w-[45%]">
           <MediaGallery images={images} video={video} />
@@ -70,20 +72,20 @@ const ProductDetail = () => {
         {/* Right: Product Info & Configuration */}
         <div className="w-full lg:w-[55%] flex flex-col">
           <div className="mb-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-blue-600">{product.category}</span>
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-blue-600">{product.category}</span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-black text-gray-900 mb-4">{product.name}</h1>
-          <div className="text-3xl font-bold text-gray-900 mb-6">
-            ${product.price.toFixed(2)} <span className="text-lg text-gray-500 font-medium">/ unit</span>
+          <h1 className="text-2xl md:text-5xl font-black text-gray-900 mb-2 md:mb-4">{product.name}</h1>
+          <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 md:mb-6">
+            ${product.price.toFixed(2)} <span className="text-base md:text-lg text-gray-500 font-medium">/ unit</span>
           </div>
           
-          <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+          <p className="text-sm md:text-lg text-gray-600 mb-6 md:mb-8 leading-relaxed">
             High-quality {product.name.toLowerCase()} suitable for all your business needs. 
             Printed on premium material with vivid colors. Upload your custom design and we'll handle the rest.
           </p>
 
           {/* Configuration Block */}
-          <div className="bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-100 mb-8">
+          <div className="bg-gray-50 p-4 md:p-8 rounded-[1rem] md:rounded-2xl border border-gray-100 mb-6 md:mb-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
               <div>
                 <label className="block text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Quantity</label>
@@ -111,8 +113,8 @@ const ProductDetail = () => {
               </div>
               
               <div className="text-right">
-                <span className="block text-sm font-medium text-gray-500 mb-1">Subtotal</span>
-                <span className="text-3xl font-black text-gray-900">${(product.price * Math.max(quantity, product.minOrderQty)).toFixed(2)}</span>
+                <span className="block text-xs md:text-sm font-medium text-gray-500 mb-1">Subtotal</span>
+                <span className="text-2xl md:text-3xl font-black text-gray-900">${(product.price * Math.max(quantity, product.minOrderQty)).toFixed(2)}</span>
               </div>
             </div>
 
@@ -126,7 +128,7 @@ const ProductDetail = () => {
 
           <DesignUploader />
 
-          <div className="fixed bottom-[100px] md:bottom-0 left-4 right-4 md:left-0 md:right-auto md:w-full bg-white/95 backdrop-blur-xl p-3 border border-gray-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-3xl z-40 md:static md:bg-transparent md:p-0 md:border-0 md:shadow-none md:rounded-none md:z-auto mt-auto">
+          <div className="fixed bottom-[calc(3.5rem+env(safe-area-inset-bottom))] md:bottom-0 left-0 right-0 md:left-0 md:right-auto md:w-full bg-white/95 backdrop-blur-xl p-3 border-t border-gray-200/60 shadow-[0_-8px_30px_rgb(0,0,0,0.08)] rounded-t-3xl z-40 md:static md:bg-transparent md:p-0 md:border-0 md:shadow-none md:rounded-none md:z-auto mt-auto">
             <button 
               onClick={handleAddToCart}
               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-lg flex items-center justify-center gap-2"
@@ -140,11 +142,11 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      <div className="mt-16 bg-white p-8 md:p-12 rounded-3xl border border-gray-100 shadow-sm">
-        <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-10 text-center">Frequently Asked Questions</h2>
+      <div className="mt-10 md:mt-16 bg-white p-5 sm:p-8 md:p-12 rounded-[1.5rem] md:rounded-3xl border border-gray-100 shadow-sm">
+        <h2 className="text-xl md:text-3xl font-black text-gray-900 mb-6 md:mb-10 text-center">Frequently Asked Questions</h2>
         
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
-          <div className="p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 flex flex-col justify-between">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12">
+          <div className="p-4 md:p-6 rounded-[1rem] md:rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 flex flex-col justify-between">
             <div>
               <p className="font-bold text-gray-900 mb-3 flex items-start">
                 <span className="text-blue-600 mr-3 text-xl">Q.</span>
@@ -162,7 +164,7 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
-          <div className="p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 flex flex-col justify-between">
+          <div className="p-4 md:p-6 rounded-[1rem] md:rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 flex flex-col justify-between">
             <div>
               <p className="font-bold text-gray-900 mb-3 flex items-start">
                 <span className="text-blue-600 mr-3 text-xl">Q.</span>
@@ -182,7 +184,7 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        <div className="bg-blue-50 p-8 rounded-2xl max-w-2xl mx-auto border border-blue-100">
+        <div className="bg-blue-50 p-5 md:p-8 rounded-[1rem] md:rounded-2xl max-w-2xl mx-auto border border-blue-100">
           {!isAsking ? (
             <div className="text-center">
               <h3 className="text-xl font-bold text-gray-900 mb-3">Still have questions?</h3>
@@ -228,12 +230,12 @@ const ProductDetail = () => {
       </div>
 
       {/* Related Products */}
-      <div className="mt-16">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-black text-gray-900">You Might Also Like</h2>
+      <div className="mt-10 md:mt-16">
+        <div className="flex items-center justify-between mb-4 md:mb-8">
+          <h2 className="text-xl md:text-2xl font-black text-gray-900">You Might Also Like</h2>
           <Link to="/products" className="text-blue-600 font-bold hover:underline">View All</Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
           {mockProducts.filter(p => p.id !== product.id).slice(0, 4).map((related) => (
             <ProductCard key={related.id} product={related} />
           ))}

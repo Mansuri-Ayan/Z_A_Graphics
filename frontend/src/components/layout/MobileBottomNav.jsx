@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Package, Phone, User, ShoppingCart } from 'lucide-react';
+import { useLenis } from 'lenis/react';
 import { useCart } from '../../context/CartContext';
 
 const MobileBottomNav = () => {
@@ -14,6 +15,18 @@ const MobileBottomNav = () => {
     if (path === '/') return location.pathname === '/';
     return location.pathname.startsWith(path);
   };
+  const lenis = useLenis();
+
+  const handleSamePageScroll = (e, path) => {
+    if (isActive(path)) {
+      e.preventDefault();
+      if (lenis) {
+        lenis.scrollTo(0);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
 
   const navItems = [
     { name: 'Home', path: '/', icon: Home },
@@ -25,7 +38,7 @@ const MobileBottomNav = () => {
 
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 pb-[env(safe-area-inset-bottom)]">
-      <div className="flex justify-around items-center h-16 px-1">
+      <div className="flex justify-around items-center h-14 px-1">
         {navItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.path);
@@ -35,14 +48,14 @@ const MobileBottomNav = () => {
             <Link
               key={item.name}
               to={item.path}
+              onClick={(e) => handleSamePageScroll(e, item.path)}
               className="relative flex flex-col items-center justify-center w-full h-full space-y-1 outline-none tap-highlight-transparent"
             >
               <div className="relative flex items-center justify-center">
                 <Icon 
-                  size={24} 
+                  size={20} 
                   strokeWidth={active ? 2.5 : 2} 
                   className={`transition-colors duration-200 ${active ? 'text-blue-600' : 'text-gray-500'}`}
-                  fill={active ? 'currentColor' : 'none'}
                 />
                 
                 {/* Cart Notification Badge */}
@@ -54,7 +67,7 @@ const MobileBottomNav = () => {
               </div>
               
               <span 
-                className={`text-[11px] transition-colors duration-200 ${
+                className={`text-[10px] transition-colors duration-200 ${
                   active ? 'text-blue-600 font-bold' : 'text-gray-500 font-medium'
                 }`}
               >

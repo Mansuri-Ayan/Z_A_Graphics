@@ -20,7 +20,7 @@ export const FeaturedProducts = ({ content, products }) => (
         </Link>
       </div>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
         {products.map((product) => (
           <article key={product.id} className="group">
             <Link to={`/products/${productSlug(product.name)}`} className="block">

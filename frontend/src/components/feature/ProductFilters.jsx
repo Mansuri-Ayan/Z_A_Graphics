@@ -58,16 +58,16 @@ const ProductFilters = ({
 
       <aside
         className={`
-          fixed md:relative top-0 left-0 h-full md:h-auto w-[85%] sm:w-80 md:w-1/4 
+          fixed md:relative top-0 left-0 h-full md:h-auto w-3/4 sm:w-80 md:w-1/4
           bg-white md:bg-transparent z-50 md:z-auto
           transform transition-transform duration-300 ease-in-out
           ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
           overflow-y-auto md:overflow-visible
         `}
       >
-        <div className="md:sticky md:top-24 p-6 md:p-6 bg-white md:rounded-3xl shadow-2xl md:shadow-xl md:border md:border-gray-100 min-h-full md:min-h-0">
-          <div className="flex justify-between items-center border-b border-gray-100 pb-4 mb-6">
-            <h3 className="font-black text-2xl text-gray-900">Filters</h3>
+        <div className="md:sticky md:top-24 p-4 md:p-6 bg-white md:rounded-3xl shadow-2xl md:shadow-xl md:border md:border-gray-100 min-h-full md:min-h-0">
+          <div className="flex justify-between items-center border-b border-gray-100 pb-4 mb-4 md:mb-6">
+            <h3 className="font-black text-xl md:text-2xl text-gray-900">Filters</h3>
             <button 
               className="md:hidden p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors" 
               onClick={() => setIsMobileOpen(false)}
@@ -79,8 +79,8 @@ const ProductFilters = ({
           </div>
 
           {/* Categories */}
-          <div className="mb-8">
-            <h4 className="font-bold text-sm text-gray-900 mb-4 uppercase tracking-wider flex items-center gap-2">
+          <div className="mb-6 md:mb-8">
+            <h4 className="font-bold text-[10px] md:text-sm text-gray-900 mb-3 md:mb-4 uppercase tracking-wider flex items-center gap-2">
               <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
               Categories
             </h4>
@@ -109,8 +109,8 @@ const ProductFilters = ({
           </div>
 
           {/* Price Range */}
-          <div className="mb-8">
-            <h4 className="font-bold text-sm text-gray-900 mb-6 uppercase tracking-wider flex items-center gap-2">
+          <div className="mb-6 md:mb-8">
+            <h4 className="font-bold text-[10px] md:text-sm text-gray-900 mb-4 md:mb-6 uppercase tracking-wider flex items-center gap-2">
               <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
               Price Range
             </h4>

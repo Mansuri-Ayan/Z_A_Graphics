@@ -14,7 +14,7 @@ const WhatsAppFAB = () => {
       href="https://wa.me/919876543210"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-24 md:bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 duration-1000 animate-bounce group"
+      className="fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] md:bottom-6 right-4 md:right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-3.5 md:p-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 duration-300 group"
       aria-label="Chat with us on WhatsApp"
     >
       <svg 
