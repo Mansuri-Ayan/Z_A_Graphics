@@ -53,7 +53,7 @@ const ProductDetail = () => {
   const video = "https://www.w3schools.com/html/mov_bbb.mp4";
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-32 md:pb-16 bg-gray-50 min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-48 md:pb-16 bg-gray-50 min-h-screen">
       {/* Breadcrumbs */}
       <div className="text-sm text-gray-500 mb-8 font-medium">
         <Link to="/" className="hover:text-blue-600 transition-colors">Home</Link> <span className="mx-2">&gt;</span> 
@@ -126,10 +126,10 @@ const ProductDetail = () => {
 
           <DesignUploader />
 
-          <div className="fixed bottom-16 md:bottom-0 left-0 w-full bg-white/80 backdrop-blur-md p-4 border-t border-gray-200 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.1)] z-40 md:static md:bg-transparent md:p-0 md:border-0 md:shadow-none md:z-auto mt-auto">
+          <div className="fixed bottom-[100px] md:bottom-0 left-4 right-4 md:left-0 md:right-auto md:w-full bg-white/95 backdrop-blur-xl p-3 border border-gray-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-3xl z-40 md:static md:bg-transparent md:p-0 md:border-0 md:shadow-none md:rounded-none md:z-auto mt-auto">
             <button 
               onClick={handleAddToCart}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-lg flex items-center justify-center gap-2"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-lg flex items-center justify-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />

@@ -1,48 +1,57 @@
+import React, { Suspense, lazy } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { PageLoader } from './components/ui/PageLoader';
 
-// Layouts
+// Layouts (Loaded synchronously to prevent navbar flicker)
 import Layout from './components/layout/Layout';
 import CustomerLayout from './layouts/CustomerLayout';
 import AdminLayout from './layouts/AdminLayout';
 
-// Public Pages
-import Home from './pages/public/Home';
-import Products from './pages/public/Products';
-import ProductDetail from './pages/public/ProductDetail';
-import Cart from './pages/public/Cart';
-import Checkout from './pages/public/Checkout';
-import OrderConfirmation from './pages/public/OrderConfirmation';
-import Login from './pages/public/Login';
-import Register from './pages/public/Register';
-import ForgotPassword from './pages/public/ForgotPassword';
-import Contact from './pages/public/Contact';
-import About from './pages/public/About';
-import NotFound from './pages/public/NotFound';
-import TermsOfService from './pages/public/legal/TermsOfService';
-import PrivacyPolicy from './pages/public/legal/PrivacyPolicy';
-import RefundPolicy from './pages/public/legal/RefundPolicy';
-import ShippingPolicy from './pages/public/legal/ShippingPolicy';
+// Higher Order Component to wrap lazy loaded routes with Suspense
+const Loadable = (Component) => (props) => (
+  <Suspense fallback={<PageLoader />}>
+    <Component {...props} />
+  </Suspense>
+);
 
-// Customer Pages
-import Account from './pages/customer/Account';
-import CustomerOrders from './pages/customer/Orders';
-import OrderDetail from './pages/customer/OrderDetail';
-import CustomerInquiries from './pages/customer/Inquiries';
-import CustomerSettings from './pages/customer/Settings';
+// Public Pages (Lazy Loaded)
+const Home = Loadable(lazy(() => import('./pages/public/Home')));
+const Products = Loadable(lazy(() => import('./pages/public/Products')));
+const ProductDetail = Loadable(lazy(() => import('./pages/public/ProductDetail')));
+const Cart = Loadable(lazy(() => import('./pages/public/Cart')));
+const Checkout = Loadable(lazy(() => import('./pages/public/Checkout')));
+const OrderConfirmation = Loadable(lazy(() => import('./pages/public/OrderConfirmation')));
+const Login = Loadable(lazy(() => import('./pages/public/Login')));
+const Register = Loadable(lazy(() => import('./pages/public/Register')));
+const ForgotPassword = Loadable(lazy(() => import('./pages/public/ForgotPassword')));
+const Contact = Loadable(lazy(() => import('./pages/public/Contact')));
+const About = Loadable(lazy(() => import('./pages/public/About')));
+const NotFound = Loadable(lazy(() => import('./pages/public/NotFound')));
+const TermsOfService = Loadable(lazy(() => import('./pages/public/legal/TermsOfService')));
+const PrivacyPolicy = Loadable(lazy(() => import('./pages/public/legal/PrivacyPolicy')));
+const RefundPolicy = Loadable(lazy(() => import('./pages/public/legal/RefundPolicy')));
+const ShippingPolicy = Loadable(lazy(() => import('./pages/public/legal/ShippingPolicy')));
 
-// Admin Pages
-import AdminDashboard from './pages/admin/Dashboard';
-import AdminProducts from './pages/admin/Products';
-import AdminProductForm from './pages/admin/ProductForm';
-import AdminProductView from './pages/admin/ProductView';
-import AdminOrders from './pages/admin/Orders';
-import AdminOrderDetail from './pages/admin/OrderDetail';
-import AdminSettings from './pages/admin/Settings';
-import AdminQA from './pages/admin/QA';
-import AdminCustomers from './pages/admin/Customers';
-import AdminCustomerDetail from './pages/admin/CustomerDetail';
-import AdminInquiries from './pages/admin/Inquiries';
-import AdminPromo from './pages/admin/Promo';
+// Customer Pages (Lazy Loaded)
+const Account = Loadable(lazy(() => import('./pages/customer/Account')));
+const CustomerOrders = Loadable(lazy(() => import('./pages/customer/Orders')));
+const OrderDetail = Loadable(lazy(() => import('./pages/customer/OrderDetail')));
+const CustomerInquiries = Loadable(lazy(() => import('./pages/customer/Inquiries')));
+const CustomerSettings = Loadable(lazy(() => import('./pages/customer/Settings')));
+
+// Admin Pages (Lazy Loaded)
+const AdminDashboard = Loadable(lazy(() => import('./pages/admin/Dashboard')));
+const AdminProducts = Loadable(lazy(() => import('./pages/admin/Products')));
+const AdminProductForm = Loadable(lazy(() => import('./pages/admin/ProductForm')));
+const AdminProductView = Loadable(lazy(() => import('./pages/admin/ProductView')));
+const AdminOrders = Loadable(lazy(() => import('./pages/admin/Orders')));
+const AdminOrderDetail = Loadable(lazy(() => import('./pages/admin/OrderDetail')));
+const AdminSettings = Loadable(lazy(() => import('./pages/admin/Settings')));
+const AdminQA = Loadable(lazy(() => import('./pages/admin/QA')));
+const AdminCustomers = Loadable(lazy(() => import('./pages/admin/Customers')));
+const AdminCustomerDetail = Loadable(lazy(() => import('./pages/admin/CustomerDetail')));
+const AdminInquiries = Loadable(lazy(() => import('./pages/admin/Inquiries')));
+const AdminPromo = Loadable(lazy(() => import('./pages/admin/Promo')));
 
 /**
  * Route Configuration using React Router v6 createBrowserRouter

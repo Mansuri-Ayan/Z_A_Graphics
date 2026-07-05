@@ -7,7 +7,7 @@ import {
 } from '../../mock-data/homeContent';
 import products from '../../mock-data/products.json';
 import { CtaBanner } from './home/CtaBanner';
-import { Hero } from './home/Hero';
+import { BestProducts } from './home/BestProducts';
 import { ServicesStrip } from './home/ServicesStrip';
 import { WhyChooseUs } from './home/WhyChooseUs';
 import ProductCard from '../../components/feature/ProductCard';
@@ -16,14 +16,14 @@ import Testimonials from '../../components/feature/Testimonials';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const featuredProducts = products.slice(0, 12);
+  const featuredProducts = products.slice(4, 16); // offset since first 4 are in BestProducts
 
   return (
     <div className="w-full">
       <title>Z.A Graphics | Premium B2B Printing & Packaging Solutions</title>
       <meta name="description" content="Elevate your brand with Z.A Graphics. We specialize in premium business cards, corrugated shipping boxes, and custom marketing materials for businesses." />
       
-      <Hero content={heroContent} />
+      <BestProducts />
       <ServicesStrip services={servicesContent} />
 
       {/* Featured Products Section */}
