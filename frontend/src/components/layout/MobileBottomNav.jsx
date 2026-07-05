@@ -1,47 +1,61 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Package, ShoppingCart, User, Phone } from 'lucide-react';
+import { Home, Package, Phone, User, ShoppingCart } from 'lucide-react';
+import { useCart } from '../../context/CartContext';
 
 const MobileBottomNav = () => {
   const location = useLocation();
-  const isActive = (path) => location.pathname === path;
+  const { cart } = useCart();
+  
+  // Calculate total items in cart
+  const cartItemCount = cart?.reduce((total, item) => total + item.quantity, 0) || 0;
+
+  const isActive = (path) => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
 
   const navItems = [
     { name: 'Home', path: '/', icon: Home },
     { name: 'Products', path: '/products', icon: Package },
     { name: 'Contact', path: '/contact', icon: Phone },
+    { name: 'Account', path: '/account', icon: User },
     { name: 'Cart', path: '/cart', icon: ShoppingCart },
-    { name: 'Profile', path: '/account', icon: User },
   ];
 
   return (
-    <div className="md:hidden fixed bottom-6 left-4 right-4 z-50">
-      {/* Floating Glassmorphic Pill Container */}
-      <div className="bg-white/90 backdrop-blur-xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-[2rem] px-2 py-2 flex justify-around items-center">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 pb-[env(safe-area-inset-bottom)]">
+      <div className="flex justify-around items-center h-16 px-1">
         {navItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.path);
+          const isCart = item.name === 'Cart';
+          
           return (
             <Link
               key={item.name}
               to={item.path}
-              className="relative flex flex-col items-center justify-center w-full py-1 group outline-none"
+              className="relative flex flex-col items-center justify-center w-full h-full space-y-1 outline-none tap-highlight-transparent"
             >
-              {/* Animated Icon Pill Container */}
-              <div 
-                className={`relative flex items-center justify-center w-14 h-8 rounded-full transition-all duration-300 ${
-                  active 
-                    ? 'bg-blue-100 text-brand-blue scale-105' 
-                    : 'bg-transparent text-gray-400 group-hover:text-gray-700'
-                }`}
-              >
-                <Icon size={20} strokeWidth={active ? 2.5 : 2} className="relative z-10" />
+              <div className="relative flex items-center justify-center">
+                <Icon 
+                  size={24} 
+                  strokeWidth={active ? 2.5 : 2} 
+                  className={`transition-colors duration-200 ${active ? 'text-blue-600' : 'text-gray-500'}`}
+                  fill={active ? 'currentColor' : 'none'}
+                />
+                
+                {/* Cart Notification Badge */}
+                {isCart && cartItemCount > 0 && (
+                  <span className="absolute -top-1.5 -right-2 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 min-w-[18px] text-center rounded-full border-2 border-white shadow-sm">
+                    {cartItemCount > 99 ? '99+' : cartItemCount}
+                  </span>
+                )}
               </div>
               
-              {/* Text Label */}
               <span 
-                className={`text-[10px] font-bold mt-1 transition-all duration-300 ${
-                  active ? 'text-brand-blue' : 'text-gray-400'
+                className={`text-[11px] transition-colors duration-200 ${
+                  active ? 'text-blue-600 font-bold' : 'text-gray-500 font-medium'
                 }`}
               >
                 {item.name}
