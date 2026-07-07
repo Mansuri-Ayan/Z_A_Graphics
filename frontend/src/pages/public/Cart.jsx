@@ -8,7 +8,7 @@ const Cart = () => {
 
   if (cart.length === 0) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-32 text-center bg-gray-50 min-h-[70vh] flex flex-col items-center justify-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-32 pt-32 md:pt-40 text-center bg-gray-50 min-h-[70vh] flex flex-col items-center justify-center">
         <div className="w-20 h-20 md:w-32 md:h-32 bg-white border border-gray-100 rounded-full flex items-center justify-center mx-auto mb-6 md:mb-8 shadow-sm">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 md:h-16 md:w-16 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -24,7 +24,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-gray-50 min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 md:pb-12 pt-32 md:pt-40 bg-gray-50 min-h-screen">
       <h1 className="text-3xl md:text-5xl font-black text-gray-900 mb-6 md:mb-10 tracking-tight">Your Cart</h1>
 
       <div className="flex flex-col lg:flex-row gap-6 md:gap-10">
