@@ -36,6 +36,7 @@ const ShippingPolicy = Loadable(lazy(() => import('./pages/public/legal/Shipping
 const Account = Loadable(lazy(() => import('./pages/customer/Account')));
 const CustomerOrders = Loadable(lazy(() => import('./pages/customer/Orders')));
 const OrderDetail = Loadable(lazy(() => import('./pages/customer/OrderDetail')));
+const CustomerFavorites = Loadable(lazy(() => import('./pages/customer/Favorites')));
 const CustomerInquiries = Loadable(lazy(() => import('./pages/customer/Inquiries')));
 const CustomerSettings = Loadable(lazy(() => import('./pages/customer/Settings')));
 
@@ -87,6 +88,7 @@ export const router = createBrowserRouter([
           { index: true, element: <Account /> },
           { path: 'orders', element: <CustomerOrders /> },
           { path: 'orders/:orderId', element: <OrderDetail /> },
+          { path: 'favorites', element: <CustomerFavorites /> },
           { path: 'questions', element: <CustomerInquiries /> },
           { path: 'settings', element: <CustomerSettings /> },
         ],

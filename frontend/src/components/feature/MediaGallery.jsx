@@ -35,7 +35,7 @@ const MediaGallery = ({ images = [], video = null }) => {
 
       {/* Thumbnails */}
       {allMedia.length > 1 && (
-        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+        <div className="flex flex-wrap gap-3 pb-2">
           {allMedia.map((media, index) => {
             const isVideo = media.type === 'video';
             const src = isVideo ? 'https://placehold.co/100x100/1a1a1a/ffffff?text=Video' : (media.src || media);

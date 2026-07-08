@@ -2,10 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Badge } from "../ui/Badge";
 import { LazyImage } from "../ui/LazyImage"; 
+import { Heart } from 'lucide-react';
+import { useFavorites } from '../../context/FavoritesContext';
 
 const ProductCard = ({ product }) => {
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const isFav = isFavorite(product.id);
+
+  const handleFavoriteClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite(product);
+  };
+
   return (
-    <div className="group flex flex-col bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-blue-100">
+    <div className="group flex flex-col bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden border border-gray-100/50 hover:border-blue-100 hover:-translate-y-1">
       <Link to={`/products/${product.id}`} className="relative aspect-square overflow-hidden bg-gray-50">
         <LazyImage 
           src={product.image} 
@@ -16,6 +27,14 @@ const ProductCard = ({ product }) => {
           <Badge variant="primary" className="backdrop-blur-md bg-white/80 text-[10px] sm:text-xs px-1.5 py-0.5 sm:px-2.5 sm:py-0.5">
             Min Qty: {product.minOrderQty}
           </Badge>
+        </div>
+        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-10">
+          <button 
+            onClick={handleFavoriteClick}
+            className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md shadow-sm flex items-center justify-center text-gray-500 hover:text-red-500 hover:bg-white transition-colors"
+          >
+            <Heart className={`w-4 h-4 ${isFav ? 'fill-red-500 text-red-500' : ''}`} />
+          </button>
         </div>
       </Link>
       

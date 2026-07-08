@@ -12,6 +12,7 @@ const CustomerLayout = () => {
   const navItems = [
     { name: 'Dashboard', path: '/account' },
     { name: 'My Orders', path: '/account/orders' },
+    { name: 'My Favorites', path: '/account/favorites' },
     { name: 'My Questions', path: '/account/questions' },
     { name: 'Settings', path: '/account/settings' },
   ];

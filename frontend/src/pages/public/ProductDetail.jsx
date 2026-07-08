@@ -6,15 +6,21 @@ import DesignUploader from '../../components/feature/DesignUploader';
 import ProductCard from '../../components/feature/ProductCard';
 import { useCart } from '../../context/CartContext';
 import { useToast } from "../../components/ui/Toast/useToast";
-import { ThumbsUp, ThumbsDown } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, Star, Heart } from 'lucide-react';
+import { useFavorites } from '../../context/FavoritesContext';
 
 const ProductDetail = () => {
   const { slug } = useParams(); // Using slug as per route, but finding by id for mock data
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { isFavorite, toggleFavorite } = useFavorites();
   const { success } = useToast();
   const [isAsking, setIsAsking] = useState(false);
   const [questionText, setQuestionText] = useState('');
+  const [isWritingReview, setIsWritingReview] = useState(false);
+  const [reviewText, setReviewText] = useState('');
+  const [reviewRating, setReviewRating] = useState(5);
+  const [activeTab, setActiveTab] = useState('faq');
   
   // We're matching ID for now. If slug was really a slug, we'd find by slug.
   const product = mockProducts.find(p => p.id === slug) || mockProducts.find(p => p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') === slug) || mockProducts[0];
@@ -32,6 +38,15 @@ const ProductDetail = () => {
     success('Question submitted! You can view the reply in your account.');
     setIsAsking(false);
     setQuestionText('');
+  };
+
+  const handleSubmitReview = (e) => {
+    e.preventDefault();
+    if (!reviewText.trim()) return;
+    success('Review submitted successfully! It will be visible after moderation.');
+    setIsWritingReview(false);
+    setReviewText('');
+    setReviewRating(5);
   };
 
   const handleQuantityChange = (e) => {
@@ -128,10 +143,17 @@ const ProductDetail = () => {
 
           <DesignUploader />
 
-          <div className="fixed bottom-[calc(3.5rem+env(safe-area-inset-bottom))] md:bottom-0 left-0 right-0 md:left-0 md:right-auto md:w-full bg-white/95 backdrop-blur-xl p-3 border-t border-gray-200/60 shadow-[0_-8px_30px_rgb(0,0,0,0.08)] rounded-t-3xl z-40 md:static md:bg-transparent md:p-0 md:border-0 md:shadow-none md:rounded-none md:z-auto mt-auto">
+          <div className="fixed bottom-[calc(3.5rem+env(safe-area-inset-bottom))] md:bottom-0 left-0 right-0 md:left-0 md:right-auto md:w-full bg-white/95 backdrop-blur-xl p-3 border-t border-gray-200/60 shadow-[0_-8px_30px_rgb(0,0,0,0.08)] rounded-t-3xl z-40 md:static md:bg-transparent md:p-0 md:border-0 md:shadow-none md:rounded-none md:z-auto mt-auto flex gap-3">
+            <button 
+              onClick={() => toggleFavorite(product)}
+              className={`px-5 bg-white border border-gray-200 text-gray-500 hover:text-red-500 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center justify-center shrink-0 ${isFavorite(product.id) ? '!text-red-500 border-red-200 bg-red-50' : ''}`}
+              title={isFavorite(product.id) ? "Remove from Favorites" : "Add to Favorites"}
+            >
+              <Heart className={`w-7 h-7 ${isFavorite(product.id) ? 'fill-current' : ''}`} />
+            </button>
             <button 
               onClick={handleAddToCart}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-lg flex items-center justify-center gap-2"
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-lg flex items-center justify-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -143,9 +165,25 @@ const ProductDetail = () => {
       </div>
 
       <div className="mt-8 md:mt-16 bg-white p-4 sm:p-6 md:p-12 rounded-[1.5rem] md:rounded-3xl border border-gray-100 shadow-sm">
-        <h2 className="text-lg md:text-3xl font-black text-gray-900 mb-4 md:mb-10 text-center">Frequently Asked Questions</h2>
+        <div className="flex items-center justify-evenly border-b border-gray-200 mb-6 md:mb-10">
+          <button 
+            onClick={() => setActiveTab('faq')}
+            className={`flex-1 text-center text-base md:text-2xl font-black transition-all pb-4 border-b-4 ${activeTab === 'faq' ? 'text-gray-900 border-blue-600 -mb-0.5' : 'text-gray-400 hover:text-gray-600 border-transparent'}`}
+          >
+            <span className="hidden md:inline">Frequently Asked Questions</span>
+            <span className="md:hidden">FAQs</span>
+          </button>
+          <button 
+            onClick={() => setActiveTab('reviews')}
+            className={`flex-1 text-center text-base md:text-2xl font-black transition-all pb-4 border-b-4 ${activeTab === 'reviews' ? 'text-gray-900 border-blue-600 -mb-0.5' : 'text-gray-400 hover:text-gray-600 border-transparent'}`}
+          >
+            Reviews
+          </button>
+        </div>
         
-        <div className="grid md:grid-cols-2 gap-3 md:gap-6 mb-6 md:mb-12">
+        {activeTab === 'faq' ? (
+          <>
+            <div className="grid md:grid-cols-2 gap-3 md:gap-6 mb-6 md:mb-12">
           <div className="p-3 md:p-6 rounded-[1rem] md:rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100 flex flex-col justify-between">
             <div>
               <p className="font-bold text-sm md:text-base text-gray-900 mb-2 md:mb-3 flex items-start">
@@ -182,6 +220,12 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
+        </div>
+        
+        <div className="flex justify-center mb-8 md:mb-12">
+          <button className="px-6 py-2.5 border border-gray-200 rounded-full text-sm font-bold text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors shadow-sm">
+            Show more FAQs
+          </button>
         </div>
 
         <div className="bg-blue-50 p-4 md:p-8 rounded-[1rem] md:rounded-2xl max-w-2xl mx-auto border border-blue-100">
@@ -227,6 +271,113 @@ const ProductDetail = () => {
             </div>
           )}
         </div>
+          </>
+        ) : (
+          <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+            {!isWritingReview ? (
+              <>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-black text-gray-900">Customer Reviews</h3>
+                    <div className="flex items-center gap-2 mt-1">
+                      <div className="flex text-yellow-400">
+                        <Star className="w-5 h-5 fill-current" /><Star className="w-5 h-5 fill-current" /><Star className="w-5 h-5 fill-current" /><Star className="w-5 h-5 fill-current" /><Star className="w-5 h-5 fill-current text-gray-300" />
+                      </div>
+                      <span className="text-sm font-bold text-gray-600">4.0 out of 5 (2 Reviews)</span>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={() => setIsWritingReview(true)}
+                    className="bg-brand-black hover:bg-gray-800 text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-sm hover:shadow text-sm shrink-0"
+                  >
+                    Write a Review
+                  </button>
+                </div>
+                
+                <div className="grid gap-4 md:gap-6">
+                  <div className="p-4 md:p-6 rounded-[1rem] md:rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition-shadow">
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-black">AS</div>
+                        <div>
+                          <p className="font-bold text-gray-900">Alice Smith</p>
+                          <p className="text-xs text-gray-500 font-medium">Verified Buyer</p>
+                        </div>
+                      </div>
+                      <div className="flex text-yellow-400">
+                        <Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" />
+                      </div>
+                    </div>
+                    <p className="text-sm md:text-base text-gray-700 leading-relaxed font-medium">"Excellent quality! The colors are vibrant and the cardstock is perfectly thick."</p>
+                  </div>
+
+                  <div className="p-4 md:p-6 rounded-[1rem] md:rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition-shadow">
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-black">BJ</div>
+                        <div>
+                          <p className="font-bold text-gray-900">Bob Jones</p>
+                          <p className="text-xs text-gray-500 font-medium">Verified Buyer</p>
+                        </div>
+                      </div>
+                      <div className="flex text-yellow-400">
+                        <Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current text-gray-300" />
+                      </div>
+                    </div>
+                    <p className="text-sm md:text-base text-gray-700 leading-relaxed font-medium">"Great product, but shipping took a day longer than expected. Will order again though."</p>
+                  </div>
+                </div>
+
+                <div className="flex justify-center mb-6">
+                  <button className="px-6 py-2.5 border border-gray-200 rounded-full text-sm font-bold text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors shadow-sm">
+                    Show more Reviews
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="bg-gray-50 p-4 md:p-8 rounded-[1rem] md:rounded-2xl border border-gray-100 max-w-2xl mx-auto">
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-left">Write your review</h3>
+                <form onSubmit={handleSubmitReview} className="flex flex-col items-start gap-4 w-full">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-sm font-bold text-gray-700">Rating:</span>
+                    <div className="flex text-yellow-400 cursor-pointer">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star 
+                          key={star}
+                          className={`w-6 h-6 transition-colors ${star <= reviewRating ? 'fill-current' : 'text-gray-300'}`}
+                          onClick={() => setReviewRating(star)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <textarea 
+                    className="w-full rounded-xl border border-gray-200 bg-white p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 shadow-sm text-sm" 
+                    rows="4" 
+                    placeholder="Tell us what you think about this product..."
+                    value={reviewText}
+                    onChange={(e) => setReviewText(e.target.value)}
+                    autoFocus
+                  ></textarea>
+                  <div className="flex gap-3 w-full justify-end">
+                    <button 
+                      type="button" 
+                      onClick={() => setIsWritingReview(false)} 
+                      className="px-5 py-2.5 rounded-xl text-gray-500 hover:bg-white font-medium transition-colors border border-transparent hover:border-gray-200 text-sm"
+                    >
+                      Cancel
+                    </button>
+                    <button 
+                      type="submit" 
+                      className="px-6 py-2.5 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 shadow-sm transition-colors text-sm"
+                    >
+                      Submit Review
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Related Products */}

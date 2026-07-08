@@ -69,10 +69,8 @@ export const BestProducts = () => {
         >
           {/* Double the products array to create the infinite loop effect */}
           {[...marqueeProducts, ...marqueeProducts].map((product, index) => (
-            <div key={`${product.id}-${index}`} className="w-[200px] sm:w-[240px] md:w-[320px] lg:w-[340px] mx-3 md:mx-5 shrink-0 transition-transform duration-500 hover:-translate-y-3">
-              <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] p-2 md:p-3 shadow-[0_20px_50px_rgba(15,23,42,0.06)] border border-slate-50 h-full transition-shadow duration-500 hover:shadow-[0_30px_60px_rgba(15,23,42,0.1)]">
-                <ProductCard product={product} />
-              </div>
+            <div key={`${product.id}-${index}`} className="w-[200px] sm:w-[240px] md:w-[320px] lg:w-[340px] mx-3 md:mx-5 shrink-0 transition-transform duration-500 hover:-translate-y-3 py-4">
+              <ProductCard product={product} />
             </div>
           ))}
         </div>
