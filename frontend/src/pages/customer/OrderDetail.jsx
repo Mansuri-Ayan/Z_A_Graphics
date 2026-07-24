@@ -14,7 +14,7 @@ const OrderDetail = () => {
       
       {/* Back Button */}
       <div className="mb-2">
-        <Link to="/account/orders" className="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">
+        <Link to="/account/orders" className="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
           </svg>
@@ -41,7 +41,7 @@ const OrderDetail = () => {
             <div className="absolute top-1/2 left-0 w-full h-1 md:h-1.5 bg-gray-100 -z-10 rounded-full -translate-y-1/2"></div>
             {/* Horizontal Line Active */}
             <div 
-              className="absolute top-1/2 left-0 h-1 md:h-1.5 bg-blue-600 -z-10 rounded-full transition-all duration-1000 ease-out -translate-y-1/2" 
+              className="absolute top-1/2 left-0 h-1 md:h-1.5 bg-gray-900 -z-10 rounded-full transition-all duration-1000 ease-out -translate-y-1/2" 
               style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
             ></div>
             
@@ -54,9 +54,9 @@ const OrderDetail = () => {
                   {/* Dot */}
                   <div className={`rounded-full flex items-center justify-center font-black shadow-sm transition-all duration-500 ${
                     isCompleted 
-                      ? 'bg-blue-600 text-white w-8 h-8 md:w-12 md:h-12 border-2 md:border-4 border-white' 
+                      ? 'bg-gray-900 text-white w-8 h-8 md:w-12 md:h-12 border-2 md:border-4 border-white' 
                       : isActive 
-                        ? 'bg-white border-blue-600 text-blue-600 ring-4 ring-blue-50 w-12 h-12 border-4' 
+                        ? 'bg-white border-gray-900 text-gray-900 ring-4 ring-gray-100 w-12 h-12 border-4' 
                         : 'bg-white border-gray-200 text-gray-400 w-8 h-8 md:w-12 md:h-12 border-2 md:border-4'
                   }`}>
                     {isCompleted ? (
@@ -71,7 +71,7 @@ const OrderDetail = () => {
                   {/* Label */}
                   <span className={`absolute top-14 left-1/2 -translate-x-1/2 text-center px-2 bg-white whitespace-nowrap transition-all duration-300 ${
                     isActive 
-                      ? 'block font-black text-blue-600 text-sm md:text-base scale-110 md:scale-100' 
+                      ? 'block font-black text-gray-900 text-sm md:text-base scale-110 md:scale-100' 
                       : 'hidden md:block text-xs md:text-sm font-medium text-gray-400'
                   } ${isCompleted ? 'md:text-gray-900 md:font-bold' : ''}`}>
                     {step}
@@ -94,7 +94,7 @@ const OrderDetail = () => {
               <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=400" alt="Product" className="w-full h-full object-cover" />
             </div>
             <div className="flex-grow">
-              <Link to="/products/1" className="text-lg font-black text-gray-900 hover:text-blue-600 transition-colors">Premium Business Cards</Link>
+              <Link to="/products/1" className="text-lg font-black text-gray-900 hover:text-gray-600 transition-colors">Premium Business Cards</Link>
               <p className="text-sm text-gray-500 mt-2 font-medium">Design: <span className="text-gray-900">front_back_design.pdf</span></p>
               <p className="text-sm text-gray-500 mt-1 font-medium">Qty: <span className="text-gray-900">500</span></p>
             </div>
@@ -121,7 +121,7 @@ const OrderDetail = () => {
             </div>
             <div className="border-t border-gray-200 pt-4 mt-4 flex justify-between font-black text-gray-900 text-lg">
               <span>Total</span>
-              <span className="text-blue-600 text-2xl">$1550.00</span>
+              <span className="text-brand-black text-2xl">$1550.00</span>
             </div>
           </div>
         </div>

@@ -10,41 +10,41 @@ const AddressForm = ({ register, prefix, errors }) => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div>
       <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-      <input {...register(`${prefix}.fullName`)} type="text" className={`w-full border ${errors?.fullName ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500`} />
+      <input {...register(`${prefix}.fullName`)} type="text" className={`w-full border ${errors?.fullName ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900`} />
       {errors?.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName.message}</p>}
     </div>
     <div>
       <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">Company Name</label>
-      <input {...register(`${prefix}.companyName`)} type="text" className="w-full border border-gray-200 rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+      <input {...register(`${prefix}.companyName`)} type="text" className="w-full border border-gray-200 rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900" />
     </div>
     <div className="md:col-span-2">
       <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">Email Address *</label>
-      <input {...register(`${prefix}.email`)} type="email" className={`w-full border ${errors?.email ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500`} />
+      <input {...register(`${prefix}.email`)} type="email" className={`w-full border ${errors?.email ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900`} />
       {errors?.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
     </div>
     <div className="md:col-span-2">
       <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">Street Address *</label>
-      <input {...register(`${prefix}.streetAddress`)} type="text" className={`w-full border ${errors?.streetAddress ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500`} />
+      <input {...register(`${prefix}.streetAddress`)} type="text" className={`w-full border ${errors?.streetAddress ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900`} />
       {errors?.streetAddress && <p className="text-red-500 text-xs mt-1">{errors.streetAddress.message}</p>}
     </div>
     <div>
       <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">City *</label>
-      <input {...register(`${prefix}.city`)} type="text" className={`w-full border ${errors?.city ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500`} />
+      <input {...register(`${prefix}.city`)} type="text" className={`w-full border ${errors?.city ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900`} />
       {errors?.city && <p className="text-red-500 text-xs mt-1">{errors.city.message}</p>}
     </div>
     <div>
       <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">State *</label>
-      <input {...register(`${prefix}.state`)} type="text" className={`w-full border ${errors?.state ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500`} />
+      <input {...register(`${prefix}.state`)} type="text" className={`w-full border ${errors?.state ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900`} />
       {errors?.state && <p className="text-red-500 text-xs mt-1">{errors.state.message}</p>}
     </div>
     <div>
       <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">PIN Code *</label>
-      <input {...register(`${prefix}.pinCode`)} type="text" className={`w-full border ${errors?.pinCode ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500`} />
+      <input {...register(`${prefix}.pinCode`)} type="text" className={`w-full border ${errors?.pinCode ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900`} />
       {errors?.pinCode && <p className="text-red-500 text-xs mt-1">{errors.pinCode.message}</p>}
     </div>
     <div>
       <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
-      <input {...register(`${prefix}.phone`)} type="tel" className={`w-full border ${errors?.phone ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500`} />
+      <input {...register(`${prefix}.phone`)} type="tel" className={`w-full border ${errors?.phone ? 'border-red-500' : 'border-gray-200'} rounded px-3 py-1.5 md:py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900`} />
       {errors?.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
     </div>
   </div>
@@ -88,7 +88,7 @@ const Checkout = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
         <h2 className="text-2xl font-bold mb-4">Your cart is empty</h2>
-        <Link to="/products" className="text-blue-600 hover:underline">Return to Shop</Link>
+        <Link to="/products" className="text-brand-black font-bold hover:underline">Return to Shop</Link>
       </div>
     );
   }
@@ -109,20 +109,20 @@ const Checkout = () => {
 
       <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 w-full">
         <div className="flex flex-col lg:flex-row gap-6 md:gap-8">
-          
+
           {/* Left Column: Flow */}
           <div className="w-full lg:w-3/5">
             {/* Progress Indicator */}
             <div className="mb-6 md:mb-8">
               <div className="flex items-center text-sm md:text-base">
-                <div className={`flex items-center ${step >= 1 ? 'text-blue-600' : 'text-gray-400'}`}>
-                  <span className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold border-2 ${step >= 1 ? 'border-blue-600 bg-blue-50' : 'border-gray-200'}`}>1</span>
-                  <span className="ml-2 font-medium">Shipping & Billing</span>
+                <div className={`flex items-center ${step >= 1 ? 'text-brand-black font-bold' : 'text-gray-400'}`}>
+                  <span className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold border-2 ${step >= 1 ? 'border-brand-black bg-brand-black text-white' : 'border-gray-200'}`}>1</span>
+                  <span className="ml-2">Shipping & Billing</span>
                 </div>
-                <div className={`flex-grow border-t-2 mx-2 md:mx-4 ${step >= 2 ? 'border-blue-600' : 'border-gray-200'}`}></div>
-                <div className={`flex items-center ${step >= 2 ? 'text-blue-600' : 'text-gray-400'}`}>
-                  <span className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold border-2 ${step >= 2 ? 'border-blue-600 bg-blue-50' : 'border-gray-200'}`}>2</span>
-                  <span className="ml-2 font-medium">Payment</span>
+                <div className={`flex-grow border-t-2 mx-2 md:mx-4 ${step >= 2 ? 'border-brand-black' : 'border-gray-200'}`}></div>
+                <div className={`flex items-center ${step >= 2 ? 'text-brand-black font-bold' : 'text-gray-400'}`}>
+                  <span className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold border-2 ${step >= 2 ? 'border-brand-black bg-brand-black text-white' : 'border-gray-200'}`}>2</span>
+                  <span className="ml-2">Payment</span>
                 </div>
               </div>
             </div>
@@ -131,15 +131,15 @@ const Checkout = () => {
             {step === 1 && (
               <form onSubmit={handleSubmit(onShippingSubmit)} className="bg-white rounded-2xl md:rounded-3xl border border-gray-100 p-5 sm:p-6 md:p-10 shadow-sm">
                 <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-4 md:mb-6">Billing Address</h2>
-                
+
                 <AddressForm register={register} prefix="billingAddress" errors={errors.billingAddress} />
 
                 <div className="flex items-center my-8 bg-gray-50 p-4 rounded-xl">
-                  <input 
-                    type="checkbox" 
-                    id="sameAddress" 
+                  <input
+                    type="checkbox"
+                    id="sameAddress"
                     {...register('sameAsBilling')}
-                    className="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+                    className="h-5 w-5 text-brand-black border-gray-300 rounded focus:ring-gray-900 cursor-pointer"
                   />
                   <label htmlFor="sameAddress" className="ml-3 text-sm text-gray-700 cursor-pointer font-medium">
                     Shipping address is same as billing
@@ -154,9 +154,9 @@ const Checkout = () => {
                 )}
 
                 <div className="flex justify-end border-t border-gray-100 pt-8 mt-4">
-                  <button 
+                  <button
                     type="submit"
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                    className="bg-brand-black cursor-pointer hover:bg-gray-900 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 tracking-wide"
                   >
                     Continue to Payment
                   </button>
@@ -169,34 +169,34 @@ const Checkout = () => {
               <div className="bg-white rounded-2xl md:rounded-3xl border border-gray-100 p-5 sm:p-6 md:p-10 shadow-sm">
                 <div className="flex justify-between items-center mb-6 md:mb-8">
                   <h2 className="text-xl md:text-2xl font-black text-gray-900">Payment Method</h2>
-                  <button onClick={() => setStep(1)} className="text-blue-600 text-sm font-bold hover:underline">
+                  <button onClick={() => setStep(1)} className="text-brand-black text-sm font-bold underline underline-offset-2 hover:text-gray-600 transition-colors">
                     Edit Details
                   </button>
                 </div>
 
-                <div className="border-2 border-blue-600 bg-blue-50 rounded-[1rem] md:rounded-2xl p-4 md:p-6 mb-6 md:mb-8 flex items-start">
-                  <input type="radio" checked readOnly className="mt-1 h-5 w-5 text-blue-600 focus:ring-blue-500" />
+                <div className="border-2 border-gray-900 bg-gray-50 rounded-[1rem] md:rounded-2xl p-4 md:p-6 mb-6 md:mb-8 flex items-start">
+                  <input type="radio" checked readOnly className="mt-1 h-5 w-5 text-brand-black focus:ring-gray-900" />
                   <div className="ml-4">
                     <span className="block font-bold text-gray-900 text-lg">Razorpay Secure</span>
                     <span className="block text-sm text-gray-600 mt-1">Pay via Credit Card, Debit Card, NetBanking, or UPI.</span>
                     <div className="flex space-x-3 mt-4">
-                      <div className="w-12 h-8 bg-white border border-gray-200 rounded text-xs flex items-center justify-center font-bold text-gray-500">CC</div>
-                      <div className="w-12 h-8 bg-white border border-gray-200 rounded text-xs flex items-center justify-center font-bold text-gray-500">UPI</div>
-                      <div className="w-12 h-8 bg-white border border-gray-200 rounded text-xs flex items-center justify-center font-bold text-gray-500">NET</div>
+                      <div className="w-12 h-8 bg-white border border-gray-200 rounded text-xs flex items-center justify-center font-bold text-gray-500 shadow-sm">CC</div>
+                      <div className="w-12 h-8 bg-white border border-gray-200 rounded text-xs flex items-center justify-center font-bold text-gray-500 shadow-sm">UPI</div>
+                      <div className="w-12 h-8 bg-white border border-gray-200 rounded text-xs flex items-center justify-center font-bold text-gray-500 shadow-sm">NET</div>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex justify-between items-center border-t border-gray-100 pt-8">
-                  <button 
+                  <button
                     onClick={() => setStep(1)}
-                    className="text-gray-500 hover:text-gray-900 font-bold px-4 py-2 transition-colors"
+                    className="text-gray-500 cursor-pointer hover:text-gray-900 font-bold px-4 py-2 transition-colors"
                   >
                     Back
                   </button>
-                  <button 
+                  <button
                     onClick={handlePayment}
-                    className="bg-gray-900 hover:bg-black text-white font-bold px-10 py-4 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                    className="bg-brand-black cursor-pointer hover:bg-gray-900 text-white font-bold px-10 py-4 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
                   >
                     Pay ${total.toFixed(2)} Securely
                   </button>
@@ -209,7 +209,7 @@ const Checkout = () => {
           <div className="w-full lg:w-2/5">
             <div className="bg-white rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-8 sticky top-24 border border-gray-100 shadow-sm">
               <h3 className="text-lg md:text-xl font-black text-gray-900 mb-4 md:mb-6">Order Summary</h3>
-            
+
               <div className="space-y-4 md:space-y-6 mb-6 md:mb-8 max-h-[40vh] overflow-y-auto pr-2">
                 {cart.map((item) => (
                   <div key={item.id} className="flex items-start">
@@ -243,7 +243,7 @@ const Checkout = () => {
               <div className="border-t border-gray-100 pt-5 md:pt-6 mb-6 md:mb-8">
                 <div className="flex justify-between items-end">
                   <span className="font-bold text-gray-900 text-base md:text-lg">Total</span>
-                  <span className="text-2xl md:text-3xl font-black text-blue-600">${total.toFixed(2)}</span>
+                  <span className="text-2xl md:text-3xl font-black text-brand-black">${total.toFixed(2)}</span>
                 </div>
               </div>
 

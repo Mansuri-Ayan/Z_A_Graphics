@@ -81,7 +81,7 @@ const ProductFilters = ({
           {/* Categories */}
           <div className="mb-6 md:mb-8">
             <h4 className="font-bold text-[10px] md:text-sm text-gray-900 mb-3 md:mb-4 uppercase tracking-wider flex items-center gap-2">
-              <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+              <svg className="w-4 h-4 text-brand-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
               Categories
             </h4>
             <ul className="space-y-1">
@@ -93,13 +93,13 @@ const ProductFilters = ({
                         type="checkbox"
                         checked={selectedCategories.includes(cat)}
                         onChange={() => toggleCategory(cat)}
-                        className="peer appearance-none w-5 h-5 border-2 border-gray-300 rounded-md checked:bg-blue-600 checked:border-blue-600 transition-colors cursor-pointer"
+                        className="peer appearance-none w-5 h-5 border-2 border-gray-300 rounded-md checked:bg-brand-black checked:border-brand-black transition-colors cursor-pointer"
                       />
                       <svg className="absolute w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className={`ml-3 text-sm font-medium transition-colors ${selectedCategories.includes(cat) ? 'text-blue-700' : 'text-gray-600 group-hover:text-gray-900'}`}>
+                    <span className={`ml-3 text-sm font-medium transition-colors ${selectedCategories.includes(cat) ? 'text-brand-black font-black' : 'text-gray-600 group-hover:text-gray-900'}`}>
                       {cat}
                     </span>
                   </label>
@@ -111,7 +111,7 @@ const ProductFilters = ({
           {/* Price Range */}
           <div className="mb-6 md:mb-8">
             <h4 className="font-bold text-[10px] md:text-sm text-gray-900 mb-4 md:mb-6 uppercase tracking-wider flex items-center gap-2">
-              <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <svg className="w-4 h-4 text-brand-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
               Price Range
             </h4>
             
@@ -125,10 +125,10 @@ const ProductFilters = ({
                   setPriceRange({ min: val[0], max: val[1] });
                 }}
                 styles={{
-                  track: { backgroundColor: '#2563eb', height: 8 },
+                  track: { backgroundColor: '#050505', height: 8 },
                   rail: { backgroundColor: '#f3f4f6', height: 8 },
                   handle: { 
-                    borderColor: '#2563eb', 
+                    borderColor: '#050505', 
                     borderWidth: 2,
                     backgroundColor: '#fff',
                     opacity: 1,
@@ -149,7 +149,7 @@ const ProductFilters = ({
                   placeholder="Min"
                   value={priceRange.min}
                   onChange={(e) => handlePriceInput(e, 'min')}
-                  className="w-full border border-gray-200 bg-gray-50 rounded-xl pl-7 pr-3 py-2.5 text-sm font-medium text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all"
+                  className="w-full border border-gray-200 bg-gray-50 rounded-xl pl-7 pr-3 py-2.5 text-sm font-medium text-gray-900 focus:outline-none focus:border-brand-black focus:ring-2 focus:ring-gray-200 focus:bg-white transition-all"
                 />
               </div>
               <span className="text-gray-300 font-bold">-</span>
@@ -160,7 +160,7 @@ const ProductFilters = ({
                   placeholder="Max"
                   value={priceRange.max}
                   onChange={(e) => handlePriceInput(e, 'max')}
-                  className="w-full border border-gray-200 bg-gray-50 rounded-xl pl-7 pr-3 py-2.5 text-sm font-medium text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all"
+                  className="w-full border border-gray-200 bg-gray-50 rounded-xl pl-7 pr-3 py-2.5 text-sm font-medium text-gray-900 focus:outline-none focus:border-brand-black focus:ring-2 focus:ring-gray-200 focus:bg-white transition-all"
                 />
               </div>
             </div>

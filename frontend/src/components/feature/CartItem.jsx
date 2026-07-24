@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const CartItem = ({ item, updateQuantity, removeItem }) => {
   return (
     <div className="p-4 md:p-6 flex flex-col md:grid md:grid-cols-12 md:gap-6 md:items-center relative hover:bg-gray-50 transition-colors">
-      
+
       {/* Product Details */}
       <div className="col-span-6 flex items-start space-x-3 md:space-x-4 mb-4 md:mb-0">
         <div className="w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden border border-gray-200 bg-white flex-shrink-0">
@@ -36,18 +36,18 @@ const CartItem = ({ item, updateQuantity, removeItem }) => {
       <div className="col-span-2 flex items-center md:justify-center mb-3 md:mb-0">
         <span className="md:hidden text-gray-500 font-medium mr-2 text-sm">Qty:</span>
         <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm">
-          <button 
-            className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-700 border-r border-gray-200 transition-colors font-medium text-base md:text-lg"
+          <button
+            className="w-8 h-8 cursor-pointer md:w-10 md:h-10 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-700 border-r border-gray-200 transition-colors font-medium text-base md:text-lg"
             onClick={() => updateQuantity(item.id, item.quantity - Math.max(1, Math.floor(item.minOrderQty / 10)))}
           >-</button>
-          <input 
-            type="number" 
-            value={item.quantity} 
+          <input
+            type="number"
+            value={item.quantity}
             readOnly
             className="w-10 h-8 md:w-14 md:h-10 text-center text-xs md:text-sm font-bold text-gray-900 focus:outline-none"
           />
-          <button 
-            className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-700 border-l border-gray-200 transition-colors font-medium text-base md:text-lg"
+          <button
+            className="w-8 h-8 cursor-pointer md:w-10 md:h-10 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-700 border-l border-gray-200 transition-colors font-medium text-base md:text-lg"
             onClick={() => updateQuantity(item.id, item.quantity + Math.max(1, Math.floor(item.minOrderQty / 10)))}
           >+</button>
         </div>
@@ -59,9 +59,9 @@ const CartItem = ({ item, updateQuantity, removeItem }) => {
           <span className="md:hidden text-gray-500 font-medium mr-2 text-sm">Total:</span>
           ${(item.price * item.quantity).toFixed(2)}
         </div>
-        <button 
+        <button
           onClick={() => removeItem(item.id)}
-          className="text-gray-400 hover:text-red-500 ml-4 absolute top-6 right-6 md:static transition-colors bg-white rounded-full p-1 hover:bg-red-50"
+          className="text-gray-400 cursor-pointer hover:text-red-500 ml-4 absolute top-6 right-6 md:static transition-colors bg-white rounded-full p-1 hover:bg-red-50"
           title="Remove item"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">

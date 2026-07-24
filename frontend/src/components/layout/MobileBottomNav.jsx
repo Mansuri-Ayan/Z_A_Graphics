@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Package, Phone, User, ShoppingCart } from 'lucide-react';
+import { Home, Package, ShoppingCart, Menu } from 'lucide-react';
 import { useLenis } from 'lenis/react';
 import { useCart } from '../../context/CartContext';
 
-const MobileBottomNav = () => {
+const MobileBottomNav = ({ onOpenMenu }) => {
   const location = useLocation();
   const { cart } = useCart();
   
@@ -12,6 +12,7 @@ const MobileBottomNav = () => {
   const cartItemCount = cart?.reduce((total, item) => total + item.quantity, 0) || 0;
 
   const isActive = (path) => {
+    if (!path) return false;
     if (path === '/') return location.pathname === '/';
     return location.pathname.startsWith(path);
   };
@@ -29,11 +30,10 @@ const MobileBottomNav = () => {
   };
 
   const navItems = [
-    { name: 'Home', path: '/', icon: Home },
-    { name: 'Products', path: '/products', icon: Package },
-    { name: 'Contact', path: '/contact', icon: Phone },
-    { name: 'Account', path: '/account', icon: User },
-    { name: 'Cart', path: '/cart', icon: ShoppingCart },
+    { name: 'Home', path: '/', icon: Home, isAction: false },
+    { name: 'Products', path: '/products', icon: Package, isAction: false },
+    { name: 'Cart', path: '/cart', icon: ShoppingCart, isAction: false },
+    { name: 'More', isAction: true, icon: Menu },
   ];
 
   return (
@@ -41,16 +41,11 @@ const MobileBottomNav = () => {
       <div className="flex justify-around items-center h-14 px-1">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const active = isActive(item.path);
+          const active = !item.isAction && isActive(item.path);
           const isCart = item.name === 'Cart';
           
-          return (
-            <Link
-              key={item.name}
-              to={item.path}
-              onClick={(e) => handleSamePageScroll(e, item.path)}
-              className="relative flex flex-col items-center justify-center w-full h-full space-y-1 outline-none tap-highlight-transparent"
-            >
+          const content = (
+            <>
               <div className="relative flex items-center justify-center">
                 <Icon 
                   size={20} 
@@ -73,6 +68,29 @@ const MobileBottomNav = () => {
               >
                 {item.name}
               </span>
+            </>
+          );
+
+          if (item.isAction) {
+            return (
+              <button
+                key={item.name}
+                onClick={onOpenMenu}
+                className="relative flex flex-col items-center justify-center w-full h-full space-y-1 outline-none tap-highlight-transparent cursor-pointer"
+              >
+                {content}
+              </button>
+            );
+          }
+
+          return (
+            <Link
+              key={item.name}
+              to={item.path}
+              onClick={(e) => handleSamePageScroll(e, item.path)}
+              className="relative flex flex-col items-center justify-center w-full h-full space-y-1 outline-none tap-highlight-transparent"
+            >
+              {content}
             </Link>
           );
         })}

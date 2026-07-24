@@ -16,8 +16,6 @@ const Register = () => {
 
       {/* Decorative Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[100px] animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
       {/* Main Register Card */}
@@ -25,11 +23,6 @@ const Register = () => {
 
         {/* Left Side: Premium Branding (Hidden on mobile) */}
         <div className="hidden lg:flex lg:w-1/2 bg-brand-black p-12 relative flex-col justify-center gap-12">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand-blue/30 rounded-full blur-[80px]"></div>
-            <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-purple-500/20 rounded-full blur-[80px]"></div>
-          </div>
-
           <div className="relative z-10">
             <Link to="/" className="inline-flex items-center gap-3">
               <img src={logo} alt="Z.A Graphics Logo" className="h-16 w-auto object-contain" />
@@ -39,7 +32,7 @@ const Register = () => {
           <div className="relative z-10 mt-8 mb-10">
             <h2 className="text-5xl font-black text-white leading-[1.1] tracking-tight mb-6">
               Join the
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-blue-400"> Creative</span><br />
+              <span className="font-serif italic text-gray-400 font-medium tracking-tight inline-block mx-2">Creative</span><br />
               Network.
             </h2>
             <p className="text-gray-400 text-lg font-bold leading-relaxed mb-8">
@@ -50,8 +43,8 @@ const Register = () => {
             <ul className="space-y-4">
               {['Priority bulk ordering', 'Dedicated account manager', 'Live shipment tracking'].map((feature, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm font-black text-gray-300 uppercase tracking-widest">
-                  <div className="w-6 h-6 rounded-full bg-brand-blue/20 flex items-center justify-center text-brand-blue shrink-0">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-white shrink-0">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>
                   </div>
                   {feature}
                 </li>
@@ -136,16 +129,16 @@ const Register = () => {
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-3 bg-brand-black hover:bg-gray-900 text-white font-black py-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-xl transition-all hover:-translate-y-1 text-sm uppercase tracking-widest group mt-6"
+              className="w-full flex items-center justify-center gap-3 bg-brand-black hover:bg-gray-900 text-white font-bold py-4 rounded-full shadow-md hover:shadow-lg transition-all hover:-translate-y-1 text-sm uppercase tracking-widest group mt-6"
             >
               Sign Up
-              <ArrowRight size={18} strokeWidth={3} className="transition-transform group-hover:translate-x-1" />
+              <ArrowRight size={18} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
             </button>
           </form>
 
           <div className="mt-8 text-center lg:text-left text-sm text-gray-500 font-bold">
             Already have an account?{' '}
-            <Link to="/login" className="text-brand-black hover:text-brand-blue font-black underline decoration-2 underline-offset-4 transition-colors">
+            <Link to="/login" className="text-brand-black hover:text-gray-600 font-black underline decoration-2 underline-offset-4 transition-colors">
               Sign in
             </Link>
           </div>

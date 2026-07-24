@@ -16,8 +16,6 @@ const Login = () => {
 
       {/* Decorative Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[100px] animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
       {/* Main Login Card */}
@@ -25,10 +23,6 @@ const Login = () => {
 
         {/* Left Side: Premium Branding (Hidden on mobile) */}
         <div className="hidden lg:flex lg:w-1/2 bg-brand-black p-12 relative flex-col justify-center gap-12">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-blue/30 rounded-full blur-[80px]"></div>
-            <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-purple-500/20 rounded-full blur-[80px]"></div>
-          </div>
 
           <div className="relative z-10">
             <Link to="/" className="inline-flex items-center gap-3">
@@ -39,7 +33,7 @@ const Login = () => {
           <div className="relative z-10 mb-10">
             <h2 className="text-5xl font-black text-white leading-[1.1] tracking-tight mb-6">
               Premium<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-blue-400">Print & Design</span><br />
+              <span className="font-serif italic text-gray-400 font-medium tracking-tight">Print & Design</span><br />
               Services.
             </h2>
             <p className="text-gray-400 text-lg font-bold leading-relaxed mb-10">
@@ -90,7 +84,7 @@ const Login = () => {
             <div className="space-y-2 relative">
               <div className="flex justify-between items-center pl-1 pr-1">
                 <label className="block text-xs font-black text-gray-400 uppercase tracking-widest">Password</label>
-                <Link to="/forgot-password" className="text-xs font-black text-brand-blue hover:text-blue-800 transition-colors uppercase tracking-wider">
+                <Link to="/forgot-password" className="text-xs font-black text-gray-500 hover:text-brand-black transition-colors uppercase tracking-wider">
                   Forgot?
                 </Link>
               </div>
@@ -109,16 +103,16 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-3 bg-brand-black hover:bg-gray-900 text-white font-black py-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-xl transition-all hover:-translate-y-1 text-sm uppercase tracking-widest group mt-8"
+              className="w-full flex items-center justify-center gap-3 bg-brand-black hover:bg-gray-900 text-white font-bold py-4 rounded-full shadow-md hover:shadow-lg transition-all hover:-translate-y-1 text-sm uppercase tracking-widest group mt-8"
             >
               Sign In
-              <ArrowRight size={18} strokeWidth={3} className="transition-transform group-hover:translate-x-1" />
+              <ArrowRight size={18} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
             </button>
           </form>
 
           <div className="mt-10 text-center lg:text-left text-sm text-gray-500 font-bold">
             Don't have an account?{' '}
-            <Link to="/register" className="text-brand-black hover:text-brand-blue font-black underline decoration-2 underline-offset-4 transition-colors">
+            <Link to="/register" className="text-brand-black hover:text-gray-600 font-black underline decoration-2 underline-offset-4 transition-colors">
               Create account
             </Link>
           </div>

@@ -2,32 +2,32 @@
 
 @theme {
   /* Brand Colors */
-  --color-brand-blue: #0066FF;
+  --color-brand-blue: #000000;
   --color-brand-white: #FFFFFF;
-  --color-brand-black: #1A1A1A;
+  --color-brand-black: #000000;
 
-  /* Blue Scale */
-  --color-blue-50: #EFF6FF;
-  --color-blue-100: #DBEAFE;
-  --color-blue-500: #3B82F6;
-  --color-blue-600: #0066FF;
-  --color-blue-700: #0052CC;
-  --color-blue-800: #0040A1;
+  /* Blue Scale (Mapped to Slate/Black for monochrome feel) */
+  --color-blue-50: #F8FAFC;
+  --color-blue-100: #F1F5F9;
+  --color-blue-500: #64748B;
+  --color-blue-600: #0F172A;
+  --color-blue-700: #000000;
+  --color-blue-800: #000000;
 
   /* Gray/Neutral Scale */
-  --color-gray-50: #F9FAFB;
-  --color-gray-100: #F3F4F6;
-  --color-gray-200: #E5E7EB;
-  --color-gray-400: #9CA3AF;
-  --color-gray-500: #6B7280;
-  --color-gray-700: #374151;
-  --color-gray-900: #1A1A1A;
+  --color-gray-50: #FAFAFA;
+  --color-gray-100: #F4F4F5;
+  --color-gray-200: #E4E4E7;
+  --color-gray-400: #A1A1AA;
+  --color-gray-500: #71717A;
+  --color-gray-700: #3F3F46;
+  --color-gray-900: #18181B;
 
   /* Semantic */
   --color-success: #16A34A;
   --color-error: #DC2626;
   --color-warning: #D97706;
-  --color-info: #0066FF;
+  --color-info: #0F172A;
 
   /* Typography */
   --font-sans: "Inter", system-ui, sans-serif;
@@ -35,7 +35,7 @@
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900 font-sans antialiased;
+    @apply bg-white text-gray-900 font-sans antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply text-brand-black;

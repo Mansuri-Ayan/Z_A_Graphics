@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import MobileBottomNav from './MobileBottomNav';
+import MobileNav from './MobileNav';
 import WhatsAppFAB from '../feature/WhatsAppFAB';
 import SmoothScrollProvider from './SmoothScrollProvider';
 import ScrollToTop from './ScrollToTop';
 import BackToTop from '../ui/BackToTop';
 
 const Layout = () => {
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
   return (
     <SmoothScrollProvider>
       <ScrollToTop />
@@ -27,7 +30,8 @@ const Layout = () => {
         {/* Global Floating Elements */}
         <WhatsAppFAB />
         <BackToTop />
-        <MobileBottomNav />
+        <MobileBottomNav onOpenMenu={() => setIsMobileNavOpen(true)} />
+        <MobileNav isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
       </div>
     </SmoothScrollProvider>
   );

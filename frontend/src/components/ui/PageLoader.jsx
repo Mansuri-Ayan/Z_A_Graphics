@@ -3,26 +3,29 @@ import React from 'react';
 export const PageLoader = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] w-full bg-transparent">
-      {/* Brand logo pulse effect */}
-      <div className="relative w-20 h-20 mb-6">
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary to-cyan-500 opacity-20 animate-ping"></div>
-        <div className="relative flex items-center justify-center w-full h-full rounded-2xl bg-gradient-to-br from-primary to-cyan-500 shadow-lg shadow-primary/30">
-          <span className="text-2xl font-black text-white">ZA</span>
+      <div className="relative flex items-center justify-center mb-12 mt-8">
+        {/* Animated geometric rings */}
+        <div className="absolute w-24 h-24 rounded-full border border-gray-200 animate-[spin_4s_linear_infinite]">
+          <div className="absolute top-0 left-1/2 w-2 h-2 -translate-x-1/2 -translate-y-1/2 bg-brand-black rounded-full shadow-sm"></div>
+        </div>
+        <div className="absolute w-16 h-16 rounded-full border border-gray-200 animate-[spin_3s_linear_infinite_reverse]">
+          <div className="absolute bottom-0 left-1/2 w-1.5 h-1.5 -translate-x-1/2 translate-y-1/2 bg-gray-400 rounded-full"></div>
+        </div>
+        
+        {/* Central Logo */}
+        <div className="text-3xl font-black text-brand-black tracking-tighter z-10">
+          ZA
         </div>
       </div>
       
-      {/* Loading bar */}
-      <div className="w-48 h-1.5 bg-gray-200 rounded-full overflow-hidden">
-        <div className="w-1/2 h-full bg-primary rounded-full animate-[progress_1s_ease-in-out_infinite] origin-left"></div>
+      <div className="flex flex-col items-center gap-4">
+        <p className="text-[10px] font-bold text-gray-400 tracking-[0.4em] uppercase">Processing</p>
+        <div className="flex gap-1.5">
+          <div className="w-1.5 h-1.5 bg-brand-black rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+          <div className="w-1.5 h-1.5 bg-brand-black rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+          <div className="w-1.5 h-1.5 bg-brand-black rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+        </div>
       </div>
-      <p className="mt-4 text-sm font-medium text-gray-400 tracking-widest uppercase">Loading...</p>
-
-      <style jsx>{`
-        @keyframes progress {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(200%); }
-        }
-      `}</style>
     </div>
   );
 };

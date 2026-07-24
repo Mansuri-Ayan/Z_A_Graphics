@@ -31,7 +31,7 @@ const Settings = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+
         {/* Personal Information */}
         <div className="lg:col-span-2 space-y-8">
           <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm">
@@ -41,13 +41,13 @@ const Settings = () => {
               </svg>
               Personal Information
             </h3>
-            
+
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">First Name</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="firstName"
                     value={personalInfo.firstName}
                     onChange={handleInfoChange}
@@ -56,8 +56,8 @@ const Settings = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">Last Name</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="lastName"
                     value={personalInfo.lastName}
                     onChange={handleInfoChange}
@@ -65,12 +65,12 @@ const Settings = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">Email Address</label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     name="email"
                     value={personalInfo.email}
                     onChange={handleInfoChange}
@@ -79,8 +79,8 @@ const Settings = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">Phone Number</label>
-                  <input 
-                    type="tel" 
+                  <input
+                    type="tel"
                     name="phone"
                     value={personalInfo.phone}
                     onChange={handleInfoChange}
@@ -90,7 +90,7 @@ const Settings = () => {
               </div>
 
               <div className="pt-4 flex justify-end">
-                <button type="button" className="bg-brand-black hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-xl transition-all shadow-md hover:shadow-lg">
+                <button type="button" className="cursor-pointer bg-brand-black hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-xl transition-all shadow-md hover:shadow-lg">
                   Save Changes
                 </button>
               </div>
@@ -105,26 +105,26 @@ const Settings = () => {
               </svg>
               Security
             </h3>
-            
+
             <form className="space-y-6">
               <div>
                 <label className="block text-sm font-bold text-gray-700 mb-2">Current Password</label>
-                <input 
-                  type="password" 
+                <input
+                  type="password"
                   placeholder="••••••••"
                   className="w-full md:w-2/3 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none transition-all font-medium text-gray-900"
                 />
               </div>
               <div>
                 <label className="block text-sm font-bold text-gray-700 mb-2">New Password</label>
-                <input 
-                  type="password" 
+                <input
+                  type="password"
                   placeholder="••••••••"
                   className="w-full md:w-2/3 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none transition-all font-medium text-gray-900"
                 />
               </div>
               <div className="pt-4">
-                <button type="button" className="bg-white border border-gray-200 hover:border-brand-black hover:bg-gray-50 text-brand-black font-bold py-3 px-8 rounded-xl transition-all shadow-sm">
+                <button type="button" className="cursor-pointer bg-white border border-gray-200 hover:border-brand-black hover:bg-gray-50 text-brand-black font-bold py-3 px-8 rounded-xl transition-all shadow-sm">
                   Update Password
                 </button>
               </div>
@@ -134,7 +134,7 @@ const Settings = () => {
 
         {/* Sidebar Settings */}
         <div className="space-y-8">
-          
+
           {/* Notifications */}
           <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm">
             <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
@@ -143,7 +143,7 @@ const Settings = () => {
               </svg>
               Notifications
             </h3>
-            
+
             <div className="space-y-6">
               {[
                 { id: 'orderUpdates', label: 'Order Updates', desc: 'Get notified when your order status changes.' },
@@ -155,7 +155,7 @@ const Settings = () => {
                     <h4 className="font-bold text-gray-900 text-sm">{item.label}</h4>
                     <p className="text-xs text-gray-500 font-medium mt-1 leading-relaxed">{item.desc}</p>
                   </div>
-                  <button 
+                  <button
                     onClick={() => handleNotificationChange(item.id)}
                     className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${notifications[item.id] ? 'bg-brand-blue' : 'bg-gray-200'}`}
                   >
@@ -177,7 +177,7 @@ const Settings = () => {
             <p className="text-sm text-red-600/80 font-medium mb-6 leading-relaxed">
               Once you delete your account, there is no going back. Please be certain.
             </p>
-            <button className="w-full bg-white border-2 border-red-200 hover:border-red-500 hover:bg-red-50 text-red-600 font-bold py-3 px-4 rounded-xl transition-all shadow-sm">
+            <button className="w-full cursor-pointer bg-white border-2 border-red-200 hover:border-red-500 hover:bg-red-50 text-red-600 font-bold py-3 px-4 rounded-xl transition-all shadow-sm">
               Delete Account
             </button>
           </div>

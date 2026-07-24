@@ -39,10 +39,9 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#050505] text-white pt-12 md:pt-32 relative overflow-hidden rounded-t-3xl md:rounded-t-[4rem]">
+    <footer className="bg-brand-black text-white pt-12 md:pt-24 relative overflow-hidden border-t border-white/5">
 
-      {/* Decorative Top Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(0,102,255,0.15),transparent_70%)] pointer-events-none" />
+      {/* Background purely solid for a clean look */}
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
 
@@ -51,11 +50,11 @@ const Footer = () => {
 
         {/* Left: Contact CTA */}
         <div className="md:w-1/2">
-          <p className="text-[10px] md:text-sm font-bold uppercase tracking-widest text-brand-blue mb-4 md:mb-6">Let's Talk</p>
-          <a href="mailto:hello@zagraphics.com" className="group inline-flex items-center gap-3 md:gap-4 text-2xl sm:text-3xl md:text-5xl font-medium tracking-tight text-white hover:text-brand-blue transition-colors duration-500">
+          <p className="text-[10px] md:text-sm font-bold uppercase tracking-widest text-gray-500 mb-4 md:mb-6">Let's Talk</p>
+          <a href="mailto:hello@zagraphics.com" className="group inline-flex items-center gap-3 md:gap-4 text-2xl sm:text-3xl md:text-5xl font-medium tracking-tight text-white hover:text-gray-300 transition-colors duration-300">
             hello@zagraphics.com
-            <div className="flex size-8 md:size-14 items-center justify-center rounded-full bg-white/10 group-hover:bg-brand-blue transition-all duration-500 group-hover:rotate-45 shrink-0">
-              <ArrowUpRight className="text-white size-4 md:size-6" />
+            <div className="flex size-8 md:size-12 items-center justify-center rounded-full border border-white/20 group-hover:bg-white group-hover:text-black transition-all duration-300 shrink-0">
+              <ArrowUpRight className="size-4 md:size-5 transition-transform duration-500 group-hover:rotate-45" />
             </div>
           </a>
         </div>
@@ -95,8 +94,8 @@ const Footer = () => {
     </div>
 
     {/* Massive Screen-Spanning Typography */}
-    <div className="w-full flex justify-center overflow-hidden border-b border-white/10 pb-4">
-      <h1 className="text-[15vw] font-black tracking-tighter leading-[0.75] text-transparent bg-clip-text bg-gradient-to-b from-white/20 to-white/0 select-none pointer-events-none">
+    <div className="w-full flex justify-center overflow-hidden border-b border-white/5 pb-4 md:pb-8">
+      <h1 className="text-[14.5vw] font-black tracking-tighter leading-[0.75] text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent select-none pointer-events-none">
         Z.A GRAPHICS
       </h1>
     </div>

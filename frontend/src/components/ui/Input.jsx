@@ -23,7 +23,7 @@ export const Input = React.forwardRef(({
 
   const isTextarea = type === 'textarea';
 
-  const baseInputStyles = 'w-full rounded-md border border-gray-200 bg-brand-white px-3 py-2 text-sm text-gray-900 transition-colors duration-200 placeholder:text-gray-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100';
+  const baseInputStyles = 'w-full rounded-sm border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 transition-colors duration-200 placeholder:text-gray-400 focus:border-brand-black focus:outline-none focus:ring-1 focus:ring-brand-black';
   const disabledStyles = 'cursor-not-allowed bg-gray-100 text-gray-500';
   const errorStyles = 'border-error focus:border-error focus:ring-gray-200';
 

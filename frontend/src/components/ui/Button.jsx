@@ -13,14 +13,14 @@ export const Button = React.forwardRef(({
   className = '',
   ...props
 }, ref) => {
-  const baseStyles = 'inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:ring-offset-2 focus:ring-offset-white disabled:pointer-events-none';
+  const baseStyles = 'inline-flex items-center justify-center gap-2 rounded-sm font-semibold transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-white disabled:pointer-events-none';
 
   const variants = {
-    primary: 'bg-blue-600 text-brand-white shadow-sm hover:bg-blue-700 active:bg-blue-800',
-    secondary: 'bg-gray-100 text-gray-900 shadow-sm hover:bg-gray-200 active:bg-gray-400',
-    outline: 'border border-gray-200 bg-brand-white text-gray-700 hover:border-blue-600 hover:text-blue-600 active:bg-blue-50',
-    ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200',
-    danger: 'bg-error text-brand-white shadow-sm hover:bg-gray-900 active:bg-brand-black',
+    primary: 'bg-brand-black text-white hover:bg-gray-800 active:bg-gray-900',
+    secondary: 'bg-white border border-gray-200 text-gray-900 hover:bg-gray-50 active:bg-gray-100',
+    outline: 'border border-gray-300 bg-transparent text-gray-900 hover:border-brand-black hover:bg-gray-50 active:bg-gray-100',
+    ghost: 'bg-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50 active:bg-gray-100',
+    danger: 'bg-error text-white hover:bg-red-700 active:bg-red-800',
   };
 
   const sizes = {

@@ -13,52 +13,30 @@ const Contact = () => {
       <title>Contact Us | Z.A Graphics</title>
       <meta name="description" content="Get in touch with Z.A Graphics. Reach our support team for any inquiries regarding your bulk printing orders, custom quotes, or technical assistance." />
 
-      {/* Cinematic Contact Hero Section */}
-      <section className="relative w-full pt-16 pb-20 md:pt-32 md:pb-40 lg:pt-40 lg:pb-48 flex items-center justify-center overflow-hidden bg-[#050505] rounded-b-[2rem] md:rounded-b-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] mb-6 md:mb-8">
+      {/* Premium Minimal Contact Hero Section */}
+      <section className="relative w-full pt-20 pb-32 md:pt-32 md:pb-48 lg:pt-40 lg:pb-56 flex items-center justify-center overflow-hidden bg-gray-50 border-b border-gray-100 mb-6 md:mb-8">
 
-        {/* Dynamic Abstract Background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/black-scales.png')] opacity-20"></div>
-
-          <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-brand-black via-brand-black/90 to-brand-blue/10"></div>
-
-          {/* Animated Glows */}
-          <div className="absolute top-1/4 left-1/4 w-[20rem] h-[20rem] md:w-[30rem] md:h-[30rem] bg-brand-blue/20 rounded-full mix-blend-screen filter blur-[100px] md:blur-[120px] animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-[15rem] h-[15rem] md:w-[25rem] md:h-[25rem] bg-purple-600/10 rounded-full mix-blend-screen filter blur-[80px] md:blur-[100px] animate-pulse" style={{ animationDelay: '1s' }}></div>
-        </div>
-
-        {/* Floating Decorative Elements */}
-        <div className="absolute top-20 right-20 hidden lg:block opacity-30">
-          <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="49" stroke="url(#paint0_linear)" strokeWidth="2" strokeDasharray="4 4" className="animate-[spin_20s_linear_infinite]" />
-            <defs>
-              <linearGradient id="paint0_linear" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#3B82F6" />
-                <stop offset="1" stopColor="#3B82F6" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-          </svg>
+        {/* Subtle Background Elements */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-white rounded-full blur-[100px] opacity-60"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 shadow-sm">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+          <div className="inline-flex items-center gap-3 px-4 py-1.5 md:px-5 md:py-2 rounded-full bg-white border border-gray-200 shadow-sm mb-8 md:mb-10 cursor-default">
+            <span className="relative flex h-2 w-2">
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            <span className="text-xs font-black text-gray-200 uppercase tracking-widest">Support is Online</span>
+            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Support is Online</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-4 md:mb-6 tracking-tight text-white drop-shadow-lg">
-            Let's Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-brand-blue">Together</span>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] font-black mb-6 md:mb-8 tracking-tighter text-brand-black leading-[0.95]">
+            Let's Build <br className="hidden sm:block" />
+            <span className="font-serif italic text-gray-400 font-medium tracking-tight inline-block mt-1 md:mt-2">Together.</span>
           </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed">
+          <p className="text-lg md:text-2xl text-gray-500 max-w-2xl mx-auto font-medium leading-relaxed">
             Have a question about a bulk order or need a custom quote? We're here to help bring your brand's vision to life.
           </p>
         </div>
-
-        {/* Curved bottom edge decorative shadow */}
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
       </section>
 
       <section className="pb-10 md:pb-16 -mt-12 md:-mt-32 relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

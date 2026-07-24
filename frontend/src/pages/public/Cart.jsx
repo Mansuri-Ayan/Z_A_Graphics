@@ -16,7 +16,7 @@ const Cart = () => {
         </div>
         <h2 className="text-2xl md:text-4xl font-black text-gray-900 mb-2 md:mb-4">Your cart is empty</h2>
         <p className="text-gray-500 mb-6 md:mb-10 text-sm md:text-lg">Looks like you haven't added any products to your cart yet.</p>
-        <Link to="/products" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 md:px-10 md:py-4 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-1 text-base md:text-lg">
+        <Link to="/products" className="inline-block bg-brand-black hover:bg-gray-800 text-white font-bold px-8 py-3 md:px-10 md:py-4 rounded-sm transition-all text-base md:text-lg">
           Continue Shopping
         </Link>
       </div>
@@ -30,7 +30,7 @@ const Cart = () => {
       <div className="flex flex-col lg:flex-row gap-6 md:gap-10">
         {/* Left: Line Items */}
         <div className="w-full lg:w-2/3">
-          <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+          <div className="bg-white rounded-sm border border-gray-200 overflow-hidden">
             {/* Header (Desktop only) */}
             <div className="hidden md:grid grid-cols-12 gap-6 p-6 border-b border-gray-100 bg-gray-50/50 text-sm font-bold text-gray-500 uppercase tracking-wider">
               <div className="col-span-6">Product Details</div>
@@ -55,7 +55,7 @@ const Cart = () => {
 
         {/* Right: Order Summary */}
         <div className="w-full lg:w-1/3">
-          <div className="bg-white rounded-[1.5rem] md:rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6 md:p-8 sticky top-28">
+          <div className="bg-white rounded-sm border border-gray-200 p-5 sm:p-6 md:p-8 sticky top-28">
             <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-4 md:mb-8">Order Summary</h2>
             
             <div className="space-y-3 md:space-y-5 mb-6 md:mb-8">
@@ -72,12 +72,12 @@ const Cart = () => {
             <div className="border-t border-gray-100 pt-6 mb-6 md:mb-8">
               <div className="flex justify-between items-end mb-2">
                 <span className="font-bold text-gray-900 text-lg md:text-xl">Grand Total</span>
-                <span className="text-3xl md:text-4xl font-black text-blue-600">${total.toFixed(2)}</span>
+                <span className="text-3xl md:text-4xl font-black text-brand-black">${total.toFixed(2)}</span>
               </div>
               <p className="text-xs md:text-sm text-gray-500 text-right font-medium">Inclusive of all taxes</p>
             </div>
 
-            <Link to="/checkout" className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-bold py-3 md:py-4 rounded-xl shadow-md hover:shadow-lg transition-all hover:-translate-y-1 text-base md:text-lg mb-4 md:mb-6">
+            <Link to="/checkout" className="flex items-center justify-center gap-2 w-full bg-brand-black hover:bg-gray-800 text-white text-center font-bold py-3 md:py-4 rounded-sm transition-all text-base md:text-lg mb-4 md:mb-6">
               Proceed to Checkout
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />

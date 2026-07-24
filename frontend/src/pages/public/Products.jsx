@@ -146,7 +146,7 @@ const Products = () => {
                   setPriceRange({min: '', max: ''});
                   setSearchQuery('');
                 }}
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
+                className="bg-brand-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-900 transition-colors shadow-sm hover:shadow-md tracking-wider uppercase text-xs"
               >
                 Clear all filters
               </button>
@@ -162,7 +162,7 @@ const Products = () => {
               {/* Infinite Scroll trigger area */}
               {hasMore && (
                 <div ref={observerRef} className="mt-12 py-8 flex justify-center">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-black"></div>
                 </div>
               )}
             </>

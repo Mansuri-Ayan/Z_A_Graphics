@@ -47,7 +47,7 @@ const ProductSort = ({ setIsMobileFilterOpen, sortOption, setSortOption, searchQ
             placeholder="Search products..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-100 focus:bg-white focus:border-brand-blue focus:ring-2 focus:ring-blue-100 rounded-xl text-sm transition-all outline-none font-medium placeholder:text-gray-400"
+            className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-100 focus:bg-white focus:border-brand-black focus:ring-2 focus:ring-gray-200 rounded-xl text-sm transition-all outline-none font-medium placeholder:text-gray-400"
           />
         </div>
       </div>
@@ -58,7 +58,7 @@ const ProductSort = ({ setIsMobileFilterOpen, sortOption, setSortOption, searchQ
         
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full sm:w-48 flex items-center justify-between bg-gray-50 border border-gray-100 hover:bg-gray-100 rounded-xl px-4 py-2.5 text-sm font-bold text-brand-black transition-colors outline-none focus:ring-2 focus:ring-blue-100"
+          className="w-full sm:w-48 flex items-center justify-between bg-gray-50 border border-gray-100 hover:bg-gray-100 rounded-xl px-4 py-2.5 text-sm font-bold text-brand-black transition-colors outline-none focus:ring-2 focus:ring-gray-200"
         >
           {currentSortLabel}
           <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
@@ -69,8 +69,8 @@ const ProductSort = ({ setIsMobileFilterOpen, sortOption, setSortOption, searchQ
             {sortOptions.map((option) => (
               <button
                 key={option.value}
-                className={`w-full flex items-center justify-between px-4 py-3 text-sm text-left transition-colors hover:bg-blue-50 ${
-                  sortOption === option.value ? 'bg-blue-50 text-brand-blue font-bold' : 'text-gray-600 font-medium'
+                className={`w-full flex items-center justify-between px-4 py-3 text-sm text-left transition-colors hover:bg-gray-100 ${
+                  sortOption === option.value ? 'bg-gray-100 text-brand-black font-black' : 'text-gray-500 font-bold'
                 }`}
                 onClick={() => {
                   setSortOption(option.value);
@@ -78,7 +78,7 @@ const ProductSort = ({ setIsMobileFilterOpen, sortOption, setSortOption, searchQ
                 }}
               >
                 {option.label}
-                {sortOption === option.value && <Check size={16} className="text-brand-blue" />}
+                {sortOption === option.value && <Check size={16} className="text-brand-black" />}
               </button>
             ))}
           </div>

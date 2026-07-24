@@ -29,17 +29,17 @@ const Orders = () => {
   const getStatusBadge = (status) => {
     switch(status) {
       case 'Pending':
-        return <span className="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full font-bold">Pending</span>;
+        return <span className="bg-yellow-50 text-yellow-800 border border-yellow-200 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-bold">Pending</span>;
       case 'Approved':
-        return <span className="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-bold">Approved</span>;
+        return <span className="bg-gray-50 text-gray-800 border border-gray-200 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-bold">Approved</span>;
       case 'Printing':
-        return <span className="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full font-bold">Printing</span>;
+        return <span className="bg-gray-50 text-gray-800 border border-gray-200 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-bold">Printing</span>;
       case 'Shipped':
-        return <span className="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full font-bold">Shipped</span>;
+        return <span className="bg-gray-50 text-gray-800 border border-gray-200 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-bold">Shipped</span>;
       case 'Delivered':
-        return <span className="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full font-bold">Delivered</span>;
+        return <span className="bg-green-50 text-green-800 border border-green-200 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-bold">Delivered</span>;
       default:
-        return <span className="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full font-bold">{status}</span>;
+        return <span className="bg-gray-50 text-gray-800 border border-gray-200 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-bold">{status}</span>;
     }
   };
 
@@ -71,7 +71,7 @@ const Orders = () => {
           </thead>
           <tbody>
             {currentOrders.map((order) => (
-              <tr key={order.id} className="border-b border-gray-50 hover:bg-blue-50/30 transition-colors group">
+              <tr key={order.id} className="border-b border-gray-50 hover:bg-gray-50 transition-colors group">
                 <td className="px-8 py-6 font-black text-brand-black">{order.id}</td>
                 <td className="px-8 py-6 text-sm text-gray-500 font-bold">{order.date}</td>
                 <td className="px-8 py-6 text-sm text-gray-500 font-bold">{order.items} items</td>
@@ -80,7 +80,7 @@ const Orders = () => {
                 <td className="px-8 py-6 text-right">
                   <Link 
                     to={`/account/orders/${order.id}`} 
-                    className="inline-flex items-center justify-center bg-white border border-gray-200 hover:border-brand-blue hover:text-brand-blue text-brand-black text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-xl transition-colors shadow-sm group-hover:shadow"
+                    className="inline-flex items-center justify-center bg-white border border-gray-200 hover:border-gray-900 hover:bg-gray-900 hover:text-white text-brand-black text-[10px] md:text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-xl transition-all shadow-sm group-hover:shadow"
                   >
                     View Details
                   </Link>
@@ -108,7 +108,7 @@ const Orders = () => {
           <button 
             onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
             disabled={currentPage === 1}
-            className="flex items-center justify-center w-10 h-10 rounded-xl border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:text-brand-blue disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm"
+            className="flex items-center justify-center w-10 h-10 rounded-xl border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:text-brand-black disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm cursor-pointer"
             aria-label="Previous Page"
           >
             <ChevronLeft size={18} strokeWidth={2.5} />
@@ -133,7 +133,7 @@ const Orders = () => {
           <button 
             onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
-            className="flex items-center justify-center w-10 h-10 rounded-xl border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:text-brand-blue disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm"
+            className="flex items-center justify-center w-10 h-10 rounded-xl border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:text-brand-black disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm cursor-pointer"
             aria-label="Next Page"
           >
             <ChevronRight size={18} strokeWidth={2.5} />
